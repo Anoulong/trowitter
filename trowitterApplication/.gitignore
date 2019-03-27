@@ -5,8 +5,19 @@
 .gradle
 .android
 local.properties
-.idea/
 *.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
 caches/
 native/
 build/
@@ -24,16 +35,6 @@ Android/baker/build/
 iOS_Native/Build/
 vcs.xml
 misc.xml
-
-
-
-
 *.apk
-*.iml
-.gradle
-/local.properties
-/build
-/captures
-.externalNativeBuild
 *.hprof
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loadingFragmentDestination">
+    <fragment
+        android:id="@+id/loadingFragmentDestination"
+        android:name="com.anou.trowitter.ui.fragment.LoadingFragment"
+        android:label="Loading Fragment"
+        tools:layout="@layout/fragment_loading"/>
+    <fragment
+        android:id="@+id/aboutFragmentDestination"
+        android:name="com.anou.trowitter.ui.fragment.AboutFragment"
+        android:label="About Fragment"
+        tools:layout="@layout/fragment_about">
+        <argument
+            android:name="moduleEid"
+            android:defaultValue="null"
+            app:argType="string" />
+        <!--<action-->
+        <!--android:id="@+id/action_welcomeFragment_to_startFragment"-->
+        <!--app:destination="@id/startFragment" />-->
+    </fragment>
+
+    <!--<fragment-->
+    <!--android:id="@+id/startFragment"-->
+    <!--android:name="com.bhaicompany.kotlinarchitecturalcomponents.fragments.StartFragment"-->
+    <!--android:label="Start Fragment"-->
+    <!--tools:layout="@layout/fragment_start"-->
+    <!--&gt;-->
+    <!--<action-->
+    <!--android:id="@+id/action_startFragment_to_listingFragment"-->
+    <!--app:destination="@id/listingFragment" />-->
+    <!--</fragment>-->
+    <!--<fragment-->
+    <!--android:id="@+id/listingFragment"-->
+    <!--android:name="com.bhaicompany.kotlinarchitecturalcomponents.fragments.ListingFragment"-->
+    <!--android:label="Listing Fragment">-->
+    <!--<argument-->
+    <!--android:name="Query"-->
+    <!--android:defaultValue="null"-->
+    <!--app:argType="string" />-->
+    <!--<deepLink app:uri="www.example.com/{myarg}" />-->
+    <!--</fragment>-->
+</navigation>
