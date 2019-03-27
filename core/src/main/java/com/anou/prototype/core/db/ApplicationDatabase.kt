@@ -22,6 +22,7 @@ import androidx.room.RoomDatabase
 import com.anou.prototype.core.db.about.AboutDao
 import com.anou.prototype.core.db.about.AboutEntity
 import com.anou.prototype.core.db.module.ModuleDao
+import com.anou.prototype.core.db.module.ModuleEntity
 
 
 /**

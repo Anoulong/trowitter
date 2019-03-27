@@ -16,8 +16,8 @@
 
 package com.anou.prototype.core.api
 
-import com.anou.prototype.core.db.ModuleEntity
 import com.anou.prototype.core.db.about.AboutEntity
+import com.anou.prototype.core.db.module.ModuleEntity
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 

@@ -25,7 +25,7 @@ class AboutFragment : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
 
         arguments?.let { bundle ->
-            bundle.get(Constants.MODULE_EID)?.let { eid ->
+            bundle.get(Constants.MODULE_ID)?.let { eid ->
                 moduleEid = eid.toString()
             }
         }

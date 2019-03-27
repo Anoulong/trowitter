@@ -1,9 +1,10 @@
 package com.anou.prototype.core.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.anou.prototype.core.controller.ApplicationController
-import com.anou.prototype.core.db.ModuleEntity
 import com.anou.prototype.core.repository.ModuleRepository
 import com.anou.prototype.core.strategy.ResourceStatus
 import com.anou.prototype.core.usecase.SideMenuUseCase

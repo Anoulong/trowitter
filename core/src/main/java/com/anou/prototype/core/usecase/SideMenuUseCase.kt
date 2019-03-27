@@ -1,6 +1,6 @@
 package com.anou.prototype.core.usecase
 
-import com.anou.prototype.core.db.ModuleEntity
+import com.anou.prototype.core.db.module.ModuleEntity
 
 sealed class SideMenuUseCase {
     class SetData(val modules : MutableList<ModuleEntity>): SideMenuUseCase()

@@ -6,7 +6,7 @@
 
         <variable
                 name="module"
-                type="com.anou.prototype.core.db.ModuleEntity"/>
+                type="com.anou.prototype.core.db.module.ModuleEntity"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

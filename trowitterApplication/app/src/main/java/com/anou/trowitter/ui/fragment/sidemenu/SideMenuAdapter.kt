@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.anou.prototype.core.db.module.ModuleEntity
 import com.anou.trowitter.R
+import com.anou.trowitter.base.BaseRecyclerViewAdapter
 import com.anou.trowitter.databinding.ItemSideMenuBinding
-import com.anou.prototype.core.db.ModuleEntity
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
-import com.anou.trowitter.base.BaseRecyclerViewAdapter
 
 
 class SideMenuAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInflater, val mainRouter: MainRouter) : BaseRecyclerViewAdapter<ModuleEntity, SideMenuAdapter.DrawerModuleViewHolder>() {

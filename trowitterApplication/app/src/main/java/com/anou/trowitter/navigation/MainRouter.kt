@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
-import com.anou.prototype.core.db.ModuleEntity
-import com.anou.prototype.core.db.about.AboutEntity
+import com.anou.prototype.core.db.module.ModuleEntity
 import com.anou.trowitter.R
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.Constants
@@ -19,18 +18,18 @@ class MainRouter {
         var bundle = Bundle()
 
         module.let {
-            bundle.putString(Constants.MODULE_EID, module.eid)
+            bundle.putString(Constants.MODULE_ID, module.id)
             bundle.putString(Constants.MODULE_TITLE, module.title)
 
             when (module.type) {
-                ModuleEntity.FAQ -> {
+                ModuleEntity.TWEET -> {
 //                    Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.categoryFragmentDestination, bundle, navOptions)
                 }
                 ModuleEntity.ABOUT -> {
                     Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.aboutFragmentDestination, bundle, navOptions)
                 }
-                ModuleEntity.TEXT_TYPE -> {
-//                    Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.textFragmentDestination, bundle, navOptions)
+                ModuleEntity.SETTING -> {
+                    Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.aboutFragmentDestination, bundle, navOptions)
                 }
                 else -> Toast.makeText(mainActivity, module.title, Toast.LENGTH_SHORT).show()
             }
