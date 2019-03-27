@@ -5,8 +5,7 @@ import android.widget.Toast
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.anou.prototype.core.db.ModuleEntity
-import com.anou.prototype.core.db.category.CategoryEntity
-import com.anou.prototype.core.db.feature.FeatureEntity
+import com.anou.prototype.core.db.about.AboutEntity
 import com.anou.trowitter.R
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.Constants
@@ -38,21 +37,6 @@ class MainRouter {
         }
 
         mainActivity.closeDrawer()
-    }
-
-    fun onCategorySelected(mainActivity: MainActivity, category: CategoryEntity) {
-        var bundle = Bundle()
-        category.let {
-            bundle.putString(Constants.CATEGORY_EID, category.eid)
-            bundle.putString(Constants.CATEGORY_TITLE, category.title)
-
-//            Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.featureFragmentDestination, bundle)
-        }
-        Toast.makeText(mainActivity, category.title, Toast.LENGTH_SHORT).show()
-    }
-
-    fun onFeatureSelected(mainActivity: MainActivity, featureEntity: FeatureEntity) {
-        Toast.makeText(mainActivity, featureEntity.eid, Toast.LENGTH_SHORT).show()
     }
 
      fun onFragmentViewed(mainActivity: MainActivity,string: String) {

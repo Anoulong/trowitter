@@ -4,8 +4,7 @@ import androidx.room.Room
 import com.anou.prototype.core.api.ApiService
 import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.db.ApplicationDatabase
-import com.anou.prototype.core.repository.CategoryRepository
-import com.anou.prototype.core.repository.FeatureRepository
+import com.anou.prototype.core.repository.AboutRepository
 import com.anou.prototype.core.repository.ModuleRepository
 import com.anou.prototype.core.service.NetworkConnectivityService
 import com.anou.prototype.core.viewmodel.MainViewModel
@@ -51,8 +50,7 @@ val commonModule = module {
 
 val repositoryModule = module {
     single { ModuleRepository(get(), get(), get()) }
-    single { CategoryRepository(get(), get()) }
-    single { FeatureRepository(get(), get()) }
+    single { AboutRepository(get(), get(), get()) }
 }
 
 val viewModelModule = module {

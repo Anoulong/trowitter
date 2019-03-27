@@ -19,7 +19,6 @@ import kotlinx.coroutines.Deferred
  * They can be considered as mediators between different data sources (REST services, Databases, XML files, …etc).
  */
 class AboutRepository(
-        private val appController: ApplicationController,
         val applicationDatabase: ApplicationDatabase,
         val apiService: ApiService,
         private val networkService: NetworkConnectivityService

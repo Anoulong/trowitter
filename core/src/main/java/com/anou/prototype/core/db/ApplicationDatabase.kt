@@ -21,9 +21,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.anou.prototype.core.db.about.AboutDao
 import com.anou.prototype.core.db.about.AboutEntity
-import com.anou.prototype.core.db.category.FaqDao
-import com.anou.prototype.core.db.category.CategoryEntity
-import com.anou.prototype.core.db.feature.FeatureEntity
 import com.anou.prototype.core.db.module.ModuleDao
 
 
@@ -32,7 +29,7 @@ import com.anou.prototype.core.db.module.ModuleDao
  */
 @Database(
     entities = [
-        ModuleEntity::class, CategoryEntity::class, FeatureEntity::class, AboutEntity::class],
+        ModuleEntity::class,  AboutEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -42,7 +39,6 @@ abstract class ApplicationDatabase : RoomDatabase() {
     }
 
     abstract fun moduleDao(): ModuleDao
-    abstract fun faqDao(): FaqDao
     abstract fun aboutDao(): AboutDao
 
 }

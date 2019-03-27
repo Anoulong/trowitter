@@ -18,8 +18,6 @@ package com.anou.prototype.core.api
 
 import com.anou.prototype.core.db.ModuleEntity
 import com.anou.prototype.core.db.about.AboutEntity
-import com.anou.prototype.core.db.category.CategoryEntity
-import com.anou.prototype.core.db.feature.FeatureEntity
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
@@ -37,12 +35,4 @@ interface ApiService {
     @GET("modules.json")
     fun fetchModules(): Deferred<MutableList<ModuleEntity>>
 
-    @GET("news.json")
-    fun fetchNews(): Deferred<MutableList<CategoryEntity>>
-
-    @GET("https://raw.githubusercontent.com/Anoulong/android/feature/moduleFragment/api-example/categories/faqs.json")
-    fun fetchCategory(): Deferred<MutableList<CategoryEntity>>
-
-    @GET("https://raw.githubusercontent.com/Anoulong/android/feature/moduleFragment/api-example/categories/features/faqs.json")
-    fun fetchFeatures(): Deferred<MutableList<FeatureEntity>>
 }
