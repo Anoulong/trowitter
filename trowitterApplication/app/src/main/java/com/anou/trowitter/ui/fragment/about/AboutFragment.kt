@@ -1,4 +1,4 @@
-package com.anou.trowitter.ui.fragment
+package com.anou.trowitter.ui.fragment.about
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- General -->
+    <dimen name="size_1px">1px</dimen>
+    <dimen name="size_xx_small">2dp</dimen>
+    <dimen name="size_x_small">4dp</dimen>
+    <dimen name="size_small">8dp</dimen>
+    <dimen name="size_medium">16dp</dimen>
+    <dimen name="size_regular">20dp</dimen>
+    <dimen name="size_large">32dp</dimen>
+    <dimen name="size_x_large">48dp</dimen>
+    <dimen name="size_xx_large">64dp</dimen>
+    <dimen name="size_xxx_large">72dp</dimen>
+    <dimen name="size_xxxx_large">96dp</dimen>
+
+    <!-- Side Menu Drawer -->
+    <dimen name="side_menu_height">72dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_xlarge">20sp</dimen>
+    <dimen name="font_xxlarge">24sp</dimen>
+    <dimen name="font_xxxlarge">36sp</dimen>
+    <dimen name="font_xxxxlarge">48sp</dimen>
+
+</resources>

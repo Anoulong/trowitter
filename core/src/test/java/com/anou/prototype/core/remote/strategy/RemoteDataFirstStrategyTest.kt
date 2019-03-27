@@ -1,4 +1,4 @@
-package com.anou.prototype.core.strategy
+package com.anou.prototype.core.remote.strategy
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle

@@ -13,7 +13,6 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "Module")
 data class ModuleEntity(@PrimaryKey
                         @NonNull
-                        @SerializedName("_id")
                         var id: String,
                         @SerializedName("app_eid")
                         var appEid: String? = null,

@@ -1,4 +1,4 @@
-package com.anou.trowitter.ui.fragment
+package com.anou.trowitter.ui.fragment.sidemenu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -47,7 +47,11 @@ class SideMenuFragment : BaseFragment() {
 
         // Bind views
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu, container, false)
-        adapter = SideMenuAdapter(this, inflater = LayoutInflater.from(activity), mainRouter = mainRouter)
+        adapter = SideMenuAdapter(
+            this,
+            inflater = LayoutInflater.from(activity),
+            mainRouter = mainRouter
+        )
         binding.setLifecycleOwner(this)
         binding.sideMenuRecyclerView.adapter = adapter
         return binding.root

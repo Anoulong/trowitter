@@ -26,7 +26,7 @@ import retrofit2.http.GET
  */
 interface ApiService {
     companion object {
-        val URL = "https://raw.githubusercontent.com/Anoulong/android/feature/moduleFragment/api-example/"
+        val URL = "https://raw.githubusercontent.com/Anoulong/trowitter/master/api/"
     }
 
     @GET("about.json")

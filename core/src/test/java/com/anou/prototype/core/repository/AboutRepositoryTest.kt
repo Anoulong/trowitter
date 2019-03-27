@@ -1,25 +1,16 @@
 package com.anou.prototype.core.repository
 
-import android.text.Html
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.anou.prototype.core.api.ApiService
 import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.db.ApplicationDatabase
 import com.anou.prototype.core.db.about.AboutDao
-import com.anou.prototype.core.db.about.AboutEntity
 import com.anou.prototype.core.service.NetworkConnectivityService
-import com.anou.prototype.core.strategy.ResourceWrapper
-
-import kotlinx.coroutines.*
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.assertj.core.api.Assertions
+import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 
 internal class AboutRepositoryTest {

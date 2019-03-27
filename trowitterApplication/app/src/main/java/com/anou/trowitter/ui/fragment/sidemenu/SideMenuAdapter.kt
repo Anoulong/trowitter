@@ -1,25 +1,28 @@
-package com.anou.trowitter.ui.fragment
+package com.anou.trowitter.ui.fragment.sidemenu
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.anou.trowitter.R
 import com.anou.trowitter.databinding.ItemSideMenuBinding
 import com.anou.prototype.core.db.ModuleEntity
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
-import com.anou.trowitter.utils.DiffCallback
+import com.anou.trowitter.base.BaseRecyclerViewAdapter
 
 
 class SideMenuAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInflater, val mainRouter: MainRouter) : BaseRecyclerViewAdapter<ModuleEntity, SideMenuAdapter.DrawerModuleViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrawerModuleViewHolder {
-        return DrawerModuleViewHolder(lifecycleOwner, inflater, parent)
+        return DrawerModuleViewHolder(
+            lifecycleOwner,
+            inflater,
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: DrawerModuleViewHolder, position: Int) {

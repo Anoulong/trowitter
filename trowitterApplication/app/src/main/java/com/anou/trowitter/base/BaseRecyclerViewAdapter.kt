@@ -1,7 +1,6 @@
-package com.anou.trowitter.ui.fragment
+package com.anou.trowitter.base
 
 import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
 import android.util.SparseBooleanArray
 import androidx.recyclerview.widget.DiffUtil
 import com.anou.trowitter.utils.DiffCallback
