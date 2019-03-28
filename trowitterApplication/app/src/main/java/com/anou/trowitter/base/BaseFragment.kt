@@ -15,10 +15,6 @@ abstract class BaseFragment : Fragment(){
         super.onCreate(savedInstanceState)
         // Add observer so any jobs are automatically cancelled
         lifecycle.addObserver(fragmentLifecycle)
-        Log.d(TAG, "onCreate")
-    }
-
-    companion object {
-        val TAG = BaseFragment::class.java.simpleName
+        Log.d(BaseFragment::class.java.simpleName, "onCreate")
     }
 }

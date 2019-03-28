@@ -23,7 +23,7 @@ class MainRouter {
 
             when (module.type) {
                 ModuleEntity.TWEET -> {
-//                    Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.categoryFragmentDestination, bundle, navOptions)
+                    Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.aboutFragmentDestination, bundle, navOptions)
                 }
                 ModuleEntity.ABOUT -> {
                     Navigation.findNavController(mainActivity, R.id.mainNavigationHost).navigate(R.id.aboutFragmentDestination, bundle, navOptions)
