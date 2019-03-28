@@ -1,4 +1,4 @@
-package com.anou.trowitter.ui.fragment.sidemenu
+package com.anou.trowitter.ui.sidemenu
 
 import android.os.Bundle
 import android.view.LayoutInflater

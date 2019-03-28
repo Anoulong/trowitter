@@ -1,4 +1,4 @@
-package com.anou.trowitter.ui.fragment.about
+package com.anou.trowitter.ui.tweet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AboutFragment : BaseFragment() {
+class TweetFragment : BaseFragment() {
 
     val mainViewModel by viewModel<MainViewModel>()
     val mainRouter: MainRouter by inject()
@@ -29,7 +29,7 @@ class AboutFragment : BaseFragment() {
                 moduleEid = eid.toString()
             }
         }
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_tweet, container, false)
     }
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loginFragmentDestination">
+    <fragment
+            android:id="@+id/loginFragmentDestination"
+            android:name="com.anou.trowitter.ui.login.LoginFragment"
+            android:label="Login Fragment"
+            tools:layout="@layout/fragment_login">
+    </fragment>
+
+    <!--<fragment-->
+    <!--android:id="@+id/startFragment"-->
+    <!--android:name="com.bhaicompany.kotlinarchitecturalcomponents.fragments.StartFragment"-->
+    <!--android:label="Start Fragment"-->
+    <!--tools:layout="@layout/fragment_start"-->
+    <!--&gt;-->
+    <!--<action-->
+    <!--android:id="@+id/action_startFragment_to_listingFragment"-->
+    <!--app:destination="@id/listingFragment" />-->
+    <!--</fragment>-->
+    <!--<fragment-->
+    <!--android:id="@+id/listingFragment"-->
+    <!--android:name="com.bhaicompany.kotlinarchitecturalcomponents.fragments.ListingFragment"-->
+    <!--android:label="Listing Fragment">-->
+    <!--<argument-->
+    <!--android:name="Query"-->
+    <!--android:defaultValue="null"-->
+    <!--app:argType="string" />-->
+    <!--<deepLink app:uri="www.example.com/{myarg}" />-->
+    <!--</fragment>-->
+</navigation>

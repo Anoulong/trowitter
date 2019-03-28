@@ -38,7 +38,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.anou.prototype.yoga.ui.MainActivity">
+                tools:context="com.anou.trowitter.ui.MainActivity">
 
                 <fragment
                     android:id="@+id/mainNavigationHost"
@@ -56,7 +56,7 @@
 
         <!-- Navigation Drawer-->
         <fragment
-            android:name="com.anou.trowitter.ui.fragment.sidemenu.SideMenuFragment"
+            android:name="com.anou.trowitter.ui.sidemenu.SideMenuFragment"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
