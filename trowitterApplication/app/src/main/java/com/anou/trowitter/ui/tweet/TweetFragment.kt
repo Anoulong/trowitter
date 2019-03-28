@@ -41,7 +41,7 @@ class TweetFragment : BaseFragment() {
 
 
         textViewTitleAbout?.text = moduleEid
-        mainRouter.onFragmentViewed(activity as MainActivity, "About Fragment")
+        mainRouter.onFragmentViewed(activity as MainActivity, "Tweet Fragment")
     }
 
 }

@@ -42,6 +42,9 @@
                 android:name=".ui.login.LoginActivity">
             <nav-graph android:value="@navigation/navigation_main"/>
         </activity>
+        <activity
+                android:name=".ui.setting.SettingActivity">
+        </activity>
     </application>
 
 </manifest>

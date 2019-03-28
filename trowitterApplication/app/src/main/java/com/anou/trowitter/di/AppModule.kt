@@ -11,6 +11,7 @@ import com.anou.prototype.core.viewmodel.MainViewModel
 import com.anou.trowitter.BuildConfig
 import com.anou.trowitter.controller.ApplicationControllerImpl
 import com.anou.trowitter.navigation.MainRouter
+import com.anou.trowitter.navigation.SettingRouter
 import com.anou.trowitter.network.NetworkConnectivityServiceImpl
 import com.anou.trowitter.network.NetworkStateBroadcastReceiver
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -50,6 +51,7 @@ val commonModule = module {
     single { NetworkStateBroadcastReceiver(get()) }
     single { ApplicationControllerImpl() as ApplicationController }
     single { MainRouter() }
+    single { SettingRouter() }
 }
 
 val repositoryModule = module {
