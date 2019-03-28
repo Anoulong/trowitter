@@ -11,9 +11,6 @@ abstract class ModuleDao {
     @Query("SELECT * FROM Module ORDER BY position ASC")
     abstract fun loadAllModules(): LiveData<MutableList<ModuleEntity>>
 
-    @Query("SELECT * FROM Module ORDER BY position ASC")
-    abstract fun loadModules(): MutableList<ModuleEntity>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAll(modules: MutableList<ModuleEntity>)
 //

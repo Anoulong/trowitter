@@ -47,7 +47,7 @@ val commonModule = module {
     }
 
     single { NetworkConnectivityServiceImpl() as NetworkConnectivityService }
-    single { NetworkStateBroadcastReceiver(get()) as NetworkStateBroadcastReceiver }
+    single { NetworkStateBroadcastReceiver(get()) }
     single { ApplicationControllerImpl() as ApplicationController }
     single { MainRouter() }
 }

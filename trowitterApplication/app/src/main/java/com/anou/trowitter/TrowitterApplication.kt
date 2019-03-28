@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.anou.trowitter.di.modules
+import com.facebook.stetho.Stetho
 
 
 class TrowitterApplication : MultiDexApplication() {
@@ -14,6 +15,11 @@ class TrowitterApplication : MultiDexApplication() {
 
         // start Koin context
         startKoin(this, modules)
+
+        // Stetho
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 
     override fun attachBaseContext(base: Context) {
