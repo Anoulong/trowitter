@@ -3,11 +3,6 @@ package com.anou.trowitter.ui.setting
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import com.anou.prototype.core.controller.ApplicationController
-import com.anou.prototype.core.service.NetworkConnectivityService
 import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseActivity
 import com.anou.trowitter.databinding.ActivitySettingBinding
@@ -26,8 +21,8 @@ class SettingActivity : BaseActivity() {
         bind()
         setSupportActionBar(settingToolbar)
         buttonLogout.setOnClickListener({
-            //todo delete user from local db
-            settingRouter.onBackClicked(this@SettingActivity)
+            //todo delete user from local db and navigate to login screen
+            settingRouter.logout(this@SettingActivity)
         })
     }
 

@@ -1,14 +1,9 @@
 package com.anou.trowitter.ui.login
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -17,14 +12,7 @@ import com.anou.prototype.core.service.NetworkConnectivityService
 import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseActivity
 import com.anou.trowitter.databinding.ActivityLoginBinding
-import com.anou.trowitter.databinding.ActivityMainBinding
-import com.anou.trowitter.utils.Constants
-import com.google.android.material.snackbar.Snackbar
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 

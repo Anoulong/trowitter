@@ -20,6 +20,7 @@ class AboutFragment : BaseFragment() {
     val mainViewModel by viewModel<MainViewModel>()
     val mainRouter: MainRouter by inject()
     lateinit var moduleEid: String
+    lateinit var moduleTitle: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,6 +28,9 @@ class AboutFragment : BaseFragment() {
         arguments?.let { bundle ->
             bundle.get(Constants.MODULE_ID)?.let { eid ->
                 moduleEid = eid.toString()
+            }
+            bundle.get(Constants.MODULE_TITLE)?.let { title ->
+                moduleTitle = title.toString()
             }
         }
         return inflater.inflate(R.layout.fragment_about, container, false)
@@ -41,7 +45,7 @@ class AboutFragment : BaseFragment() {
 
 
         textViewTitleAbout?.text = moduleEid
-        mainRouter.onFragmentViewed(activity as MainActivity, "About Fragment")
+        mainRouter.onFragmentViewed(activity as MainActivity, moduleTitle)
     }
 
 }

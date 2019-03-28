@@ -11,6 +11,7 @@ import com.anou.trowitter.base.BaseFragment
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.android.synthetic.main.fragment_tweet.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,6 +21,7 @@ class TweetFragment : BaseFragment() {
     val mainViewModel by viewModel<MainViewModel>()
     val mainRouter: MainRouter by inject()
     lateinit var moduleEid: String
+    lateinit var moduleTitle: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,6 +29,9 @@ class TweetFragment : BaseFragment() {
         arguments?.let { bundle ->
             bundle.get(Constants.MODULE_ID)?.let { eid ->
                 moduleEid = eid.toString()
+            }
+            bundle.get(Constants.MODULE_TITLE)?.let { title ->
+                moduleTitle = title.toString()
             }
         }
         return inflater.inflate(R.layout.fragment_tweet, container, false)
@@ -40,8 +45,8 @@ class TweetFragment : BaseFragment() {
 //        NavHostFragment.findNavController(this).navigate(R.id.welcomeFragment, null, navOptions)
 
 
-        textViewTitleAbout?.text = moduleEid
-        mainRouter.onFragmentViewed(activity as MainActivity, "Tweet Fragment")
+        textViewTitleTweet?.text = moduleEid
+        mainRouter.onFragmentViewed(activity as MainActivity, moduleTitle)
     }
 
 }
