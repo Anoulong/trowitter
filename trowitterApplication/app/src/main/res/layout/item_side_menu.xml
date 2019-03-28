@@ -12,19 +12,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/itemDrawerModuleLayout"
             android:layout_width="match_parent"
+            android:background="@drawable/selector_default_item"
             android:layout_height="@dimen/side_menu_height">
+
+        <ImageView
+                android:id="@+id/itemDrawerModuleImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/itemDrawerModuleTitle"
+                android:duplicateParentState="true"
+                android:gravity="center_vertical|start"
+                android:src="@android:drawable/ic_dialog_email"
+                android:tint="@android:color/darker_gray"/>
 
         <TextView
                 android:id="@+id/itemDrawerModuleTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/itemDrawerModuleImage"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:duplicateParentState="true"
-                android:gravity="center_vertical"
+                android:gravity="center_vertical|end"
+                tools:text="@string/app_name"
                 android:text="@{module.title}"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
