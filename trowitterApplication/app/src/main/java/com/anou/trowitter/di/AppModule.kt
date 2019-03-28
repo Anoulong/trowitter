@@ -12,6 +12,7 @@ import com.anou.trowitter.BuildConfig
 import com.anou.trowitter.controller.ApplicationControllerImpl
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.network.NetworkConnectivityServiceImpl
+import com.anou.trowitter.network.NetworkStateBroadcastReceiver
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -46,6 +47,7 @@ val commonModule = module {
     }
 
     single { NetworkConnectivityServiceImpl() as NetworkConnectivityService }
+    single { NetworkStateBroadcastReceiver(get()) as NetworkStateBroadcastReceiver }
     single { ApplicationControllerImpl() as ApplicationController }
     single { MainRouter() }
 }
