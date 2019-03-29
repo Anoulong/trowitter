@@ -20,27 +20,15 @@ abstract class RemoteDataValidationStrategy<T>(
     private fun askRemote() = mainScope.launch {
         if (isRemoteAvailable()) {
             try {
-                liveData.postValue(
-                    ResourceWrapper(
-                        status = ResourceStatus.FETCHING,
-                        localData = false,
-                        strategy = this@RemoteDataValidationStrategy::class
-                    )
-                )
+                liveData.postValue(ResourceWrapper(status = ResourceStatus.FETCHING, localData = false, strategy = this@RemoteDataValidationStrategy::class))
                 val task = withContext(remoteScope.coroutineContext) { fetchData() }
                 val data = task.await()
-                liveData.postValue(
-                    ResourceWrapper(
-                        value = data,
-                        status = ResourceStatus.SUCCESS,
-                        localData = false,
-                        strategy = this@RemoteDataValidationStrategy::class
-                    )
-                )
+                liveData.postValue(ResourceWrapper(value = data, status = ResourceStatus.SUCCESS, localData = false, strategy = this@RemoteDataValidationStrategy::class))
+
                 if (isValid(data)) {
                     withContext(localScope.coroutineContext) { writeData(data) }
                 } else {
-                    onValidationFailed(IllegalArgumentException("Invalid Credentials"))
+                    liveData.postValue(ResourceWrapper(error = IllegalArgumentException("Invalid Credentials"), status = ResourceStatus.ERROR, localData = false, strategy = this@RemoteDataValidationStrategy::class))
                 }
             } catch (error: Throwable) {
                 withContext(localScope.coroutineContext) { onRemoteFailed(error) }
@@ -56,13 +44,7 @@ abstract class RemoteDataValidationStrategy<T>(
     open fun isValid(data: T): Boolean = false
 
     @WorkerThread
-    open suspend fun onRemoteFailed(error: Throwable) {
-    }
-
-
-    @WorkerThread
-    open suspend fun onValidationFailed(error: Throwable) {
-    }
+    open suspend fun onRemoteFailed(error: Throwable) {}
 
     @WorkerThread
     abstract suspend fun fetchData(): Deferred<T>

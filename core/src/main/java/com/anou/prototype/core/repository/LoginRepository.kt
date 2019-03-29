@@ -36,6 +36,7 @@ class LoginRepository(
         override suspend fun writeData(data: UserEntity) {
             applicationDatabase.userDao().insert(data)
         }
+
     }.asLiveData()
 
     fun getLocalUser() = object : LocalDataOnlyStrategy<UserEntity>() {

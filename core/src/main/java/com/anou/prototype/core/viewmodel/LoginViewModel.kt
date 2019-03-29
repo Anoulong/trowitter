@@ -27,7 +27,7 @@ class LoginViewModel constructor(
     fun getRemoteUser(email: String, password: String): LiveData<LoginUseCase> {
         val liveSource = MutableLiveData<LoginUseCase>()
         val liveUseCase = MediatorLiveData<LoginUseCase>()
-        liveSource.value = LoginUseCase.navigateToLoginScreen
+        liveSource.value = LoginUseCase.ShowLoading
 
         val source = Transformations.switchMap(liveSource) {
             loginRepository.getRemoteUser(email, password)

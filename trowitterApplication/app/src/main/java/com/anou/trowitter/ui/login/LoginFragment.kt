@@ -31,18 +31,9 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonLogin.setOnClickListener(View.OnClickListener {
-            loginViewModel.getRemoteUser("batman@yopmail.com", "trov").observe(this, Observer { usecases ->
+            loginViewModel.getRemoteUser("batman@yopmail.com", "trv").observe(this, Observer { usecases ->
                 usecases?.let {
                     when (usecases) {
-                        is LoginUseCase.navigateToLoginScreen -> {
-                            activity?.let { loginActivity ->
-                                ActivityNavigator(loginActivity).navigate(
-                                    ActivityNavigator(loginActivity).createDestination()
-                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
-                                )
-                                loginActivity.finish()
-                            }
-                        }
                         is LoginUseCase.navigateToMainScreen -> {
                             activity?.let { loginActivity ->
                                 ActivityNavigator(loginActivity).navigate(
