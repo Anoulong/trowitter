@@ -23,7 +23,8 @@ class LoginRepository(
 ) : BaseRepository() {
 
     fun getUser() = object : RemoteDataFirstStrategy<UserEntity>() {
-        override fun isRemoteAvailable(): Boolean = networkService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+//        override fun isRemoteAvailable(): Boolean = networkService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+        override fun isRemoteAvailable(): Boolean = true
 
         override suspend fun fetchData(): Deferred<UserEntity> = apiService.fetchUser()
 

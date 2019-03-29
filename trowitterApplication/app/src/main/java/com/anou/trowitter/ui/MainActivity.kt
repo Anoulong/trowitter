@@ -51,30 +51,30 @@ class MainActivity : BaseActivity() {
         super.onResume()
         val errorChannel = applicationController.receiveErrorChannel()
 
-        activityScope.launch() {
-            val errorMessage = errorChannel.receive()
-            Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
-        }
-
-        addDisposable(networkConnectivityService.getConnectionTypeObservable()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ networkStatus ->
-                if (networkStatus == NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET) {
-                     snackbar = Snackbar.make(
-                        this@MainActivity.findViewById(R.id.mainCoordinatorLayout),
-                        "Offline",
-                        Snackbar.LENGTH_LONG
-                    )
-                    snackbar.show()
-
-                } else {
-                    snackbar?.let { snackbar ->
-                        snackbar.dismiss()
-                    }
-                }
-            }, { error -> Log.d(MainActivity::class.java.simpleName, "getConnectionTypeObservable: " + error.message) }, { })
-        )
+//        activityScope.launch() {
+//            val errorMessage = errorChannel.receive()
+//            Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
+//        }
+//
+//        addDisposable(networkConnectivityService.getConnectionTypeObservable()
+//            .subscribeOn(Schedulers.newThread())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({ networkStatus ->
+//                if (networkStatus == NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET) {
+//                     snackbar = Snackbar.make(
+//                        this@MainActivity.findViewById(R.id.mainCoordinatorLayout),
+//                        "Offline",
+//                        Snackbar.LENGTH_LONG
+//                    )
+//                    snackbar.show()
+//
+//                } else {
+//                    snackbar?.let { snackbar ->
+//                        snackbar.dismiss()
+//                    }
+//                }
+//            }, { error -> Log.d(MainActivity::class.java.simpleName, "getConnectionTypeObservable: " + error.message) }, { })
+//        )
 
     }
 

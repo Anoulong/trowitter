@@ -17,7 +17,8 @@ class ModuleRepository(
 ) : BaseRepository() {
 
     fun loadModules(): LiveData<ResourceWrapper<MutableList<ModuleEntity>>> = object : LocalDataAwareFirstStrategy<MutableList<ModuleEntity>>() {
-        override fun isRemoteAvailable() = networkConnectivityService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+//        override fun isRemoteAvailable() = networkConnectivityService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+        override fun isRemoteAvailable() = true
 
         override suspend fun fetchData(): Deferred<MutableList<ModuleEntity>> {
             return apiService.fetchModules()
