@@ -23,6 +23,8 @@ import com.anou.prototype.core.db.about.AboutDao
 import com.anou.prototype.core.db.about.AboutEntity
 import com.anou.prototype.core.db.module.ModuleDao
 import com.anou.prototype.core.db.module.ModuleEntity
+import com.anou.prototype.core.db.user.UserDao
+import com.anou.prototype.core.db.user.UserEntity
 
 
 /**
@@ -30,7 +32,7 @@ import com.anou.prototype.core.db.module.ModuleEntity
  */
 @Database(
     entities = [
-        ModuleEntity::class,  AboutEntity::class],
+        ModuleEntity::class,  AboutEntity::class,  UserEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -41,5 +43,6 @@ abstract class ApplicationDatabase : RoomDatabase() {
 
     abstract fun moduleDao(): ModuleDao
     abstract fun aboutDao(): AboutDao
+    abstract fun userDao(): UserDao
 
 }

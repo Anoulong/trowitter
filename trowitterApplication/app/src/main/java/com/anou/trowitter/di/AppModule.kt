@@ -5,8 +5,10 @@ import com.anou.prototype.core.api.ApiService
 import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.db.ApplicationDatabase
 import com.anou.prototype.core.repository.AboutRepository
+import com.anou.prototype.core.repository.LoginRepository
 import com.anou.prototype.core.repository.ModuleRepository
 import com.anou.prototype.core.service.NetworkConnectivityService
+import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.prototype.core.viewmodel.MainViewModel
 import com.anou.trowitter.BuildConfig
 import com.anou.trowitter.controller.ApplicationControllerImpl
@@ -25,9 +27,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val commonModule = module {
-    single { Room.databaseBuilder(androidApplication(), ApplicationDatabase::class.java, ApplicationDatabase.DATABASE_NAME)
-        .fallbackToDestructiveMigration()
-        .build() }
+    single {
+        Room.databaseBuilder(androidApplication(), ApplicationDatabase::class.java, ApplicationDatabase.DATABASE_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
+    }
     single {
         var client = OkHttpClient.Builder().build()
 
@@ -35,16 +39,16 @@ val commonModule = module {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             client = OkHttpClient.Builder().addInterceptor(interceptor).addNetworkInterceptor(StethoInterceptor())
-                    .build()
+                .build()
         }
 
         Retrofit.Builder()
-                .baseUrl(ApiService.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .client(client)
-                .build()
-                .create(ApiService::class.java)
+            .baseUrl(ApiService.URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .client(client)
+            .build()
+            .create(ApiService::class.java)
     }
 
     single { NetworkConnectivityServiceImpl() as NetworkConnectivityService }
@@ -57,10 +61,12 @@ val commonModule = module {
 val repositoryModule = module {
     single { ModuleRepository(get(), get(), get()) }
     single { AboutRepository(get(), get(), get()) }
+    single { LoginRepository(get(), get(), get()) }
 }
 
 val viewModelModule = module {
     viewModel { MainViewModel(get(), get()) }
+    viewModel { LoginViewModel(get()) }
 }
 
 val modules = listOf(commonModule, repositoryModule, viewModelModule)

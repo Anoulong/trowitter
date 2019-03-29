@@ -1,4 +1,4 @@
-package com.anou.prototype.core.db.about
+package com.anou.prototype.core.db.user
 
 import android.os.Parcel
 import android.os.Parcelable

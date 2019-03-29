@@ -10,10 +10,12 @@ import com.anou.prototype.core.strategy.ResourceStatus
 import com.anou.prototype.core.usecase.SideMenuUseCase
 
 class MainViewModel(val applicationController: ApplicationController, val moduleRepository: ModuleRepository) : BaseViewModel() {
-    private val liveSource = MutableLiveData<Boolean>()
-    private val liveUseCase = MediatorLiveData<SideMenuUseCase>()
+
 
     fun getModules(): LiveData<SideMenuUseCase> {
+         val liveSource = MutableLiveData<SideMenuUseCase>()
+         val liveUseCase = MediatorLiveData<SideMenuUseCase>()
+        liveSource.value = SideMenuUseCase.ShowEmpty("")
 
         val source = Transformations.switchMap(liveSource) {
             moduleRepository.loadModules()
@@ -65,11 +67,6 @@ class MainViewModel(val applicationController: ApplicationController, val module
 
         return liveUseCase
     }
-
-    fun refresh(refresh: Boolean? = false) {
-        liveSource.value = refresh
-    }
-
 
     override fun onCleared() {
         super.onCleared()
