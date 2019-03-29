@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.ActivityNavigator
 import com.anou.prototype.core.usecase.LoginUseCase
@@ -33,6 +34,15 @@ class LoginFragment : BaseFragment() {
             loginViewModel.getRemoteUser("batman@yopmail.com", "trov").observe(this, Observer { usecases ->
                 usecases?.let {
                     when (usecases) {
+                        is LoginUseCase.navigateToLoginScreen -> {
+                            activity?.let { loginActivity ->
+                                ActivityNavigator(loginActivity).navigate(
+                                    ActivityNavigator(loginActivity).createDestination()
+                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
+                                )
+                                loginActivity.finish()
+                            }
+                        }
                         is LoginUseCase.navigateToMainScreen -> {
                             activity?.let { loginActivity ->
                                 ActivityNavigator(loginActivity).navigate(
@@ -41,30 +51,15 @@ class LoginFragment : BaseFragment() {
                                 )
                                 loginActivity.finish()
                             }
-
-
                         }
-                        is LoginUseCase.navigateToLoginScreen -> {
-
-                            activity?.let { loginActivity ->
-                                ActivityNavigator(loginActivity).navigate(
-                                    ActivityNavigator(loginActivity).createDestination()
-                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
-                                )
-                                loginActivity.finish()
-                            }
-
-
+                        is LoginUseCase.ShowError -> {
+                            Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()
                         }
-                        else -> {
-                            activity?.let { loginActivity ->
-                                ActivityNavigator(loginActivity).navigate(
-                                    ActivityNavigator(loginActivity).createDestination()
-                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
-                                )
-                                loginActivity.finish()
-                            }
-
+                        LoginUseCase.ShowLoading -> {
+//                        showTransparentProgressDialog()
+                        }
+                        LoginUseCase.HideLoading -> {
+//                        dismissProgressDialog()
                         }
                     }
                 }

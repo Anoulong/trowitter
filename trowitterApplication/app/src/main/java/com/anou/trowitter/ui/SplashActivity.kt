@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.ActivityNavigator
+import com.anou.prototype.core.usecase.LaunchUseCase
 import com.anou.prototype.core.usecase.LoginUseCase
 import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.trowitter.base.BaseActivity
@@ -20,26 +21,15 @@ class SplashActivity : BaseActivity() {
         loginViewModel.getLocalUser().observe(this, Observer { usecases ->
             usecases?.let {
                 when (usecases) {
-                    is LoginUseCase.navigateToMainScreen -> {
+                    is LaunchUseCase.navigateToMainScreen -> {
 
                         ActivityNavigator(this@SplashActivity).navigate(
                             ActivityNavigator(this@SplashActivity).createDestination()
                                 .setIntent(Intent(this@SplashActivity, MainActivity::class.java)), null, null, null
                         )
                         this@SplashActivity.finish()
-
                     }
-                    is LoginUseCase.navigateToLoginScreen -> {
-
-
-                        ActivityNavigator(this@SplashActivity).navigate(
-                            ActivityNavigator(this@SplashActivity).createDestination()
-                                .setIntent(Intent(this@SplashActivity, LoginActivity::class.java)), null, null, null
-                        )
-                        this@SplashActivity.finish()
-
-                    }
-                    else -> {
+                    is LaunchUseCase.navigateToLoginScreen -> {
                         ActivityNavigator(this@SplashActivity).navigate(
                             ActivityNavigator(this@SplashActivity).createDestination()
                                 .setIntent(Intent(this@SplashActivity, LoginActivity::class.java)), null, null, null
@@ -47,6 +37,8 @@ class SplashActivity : BaseActivity() {
                         this@SplashActivity.finish()
                     }
                 }
+
+
             }
         })
     }

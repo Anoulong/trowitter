@@ -8,6 +8,7 @@ import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.db.user.UserEntity
 import com.anou.prototype.core.repository.LoginRepository
 import com.anou.prototype.core.strategy.ResourceStatus
+import com.anou.prototype.core.usecase.LaunchUseCase
 import com.anou.prototype.core.usecase.LoginUseCase
 import com.anou.prototype.core.usecase.LogoutUseCase
 
@@ -61,10 +62,10 @@ class LoginViewModel constructor(
         return liveUseCase
     }
 
-    fun getLocalUser(): LiveData<LoginUseCase> {
-        val liveSource = MutableLiveData<LoginUseCase>()
-        val liveUseCase = MediatorLiveData<LoginUseCase>()
-        liveSource.value = LoginUseCase.navigateToLoginScreen
+    fun getLocalUser(): LiveData<LaunchUseCase> {
+        val liveSource = MutableLiveData<LaunchUseCase>()
+        val liveUseCase = MediatorLiveData<LaunchUseCase>()
+        liveSource.value = LaunchUseCase.navigateToLoginScreen
 
         val source = Transformations.switchMap(liveSource) {
             loginRepository.getLocalUser()
@@ -74,24 +75,18 @@ class LoginViewModel constructor(
             when (result.status) {
                 ResourceStatus.LOADING,
                 ResourceStatus.FETCHING -> {
-                    liveUseCase.value = LoginUseCase.ShowLoading
                 }
                 ResourceStatus.SUCCESS -> {
-                    result.value?.let { data ->
-                        liveUseCase.value = LoginUseCase.navigateToMainScreen(data)
+                    if (result.value?.let { data ->
+                            liveUseCase.value = LaunchUseCase.navigateToMainScreen(data)
+                        } == null) {
+                        liveUseCase.value = LaunchUseCase.navigateToLoginScreen
                     }
-                    liveUseCase.value = LoginUseCase.HideLoading
                 }
-                ResourceStatus.ERROR -> {
-                    result.error?.message?.let { errorMessage ->
-                        liveUseCase.value = LoginUseCase.ShowError(errorMessage)
-                    }
-                    liveUseCase.value = LoginUseCase.HideLoading
-                }
+                ResourceStatus.ERROR,
                 ResourceStatus.UNKNOWN,
                 ResourceStatus.INVALID -> {
-                    liveUseCase.value = LoginUseCase.ShowError("Something weird here, should never happened")
-                    liveUseCase.value = LoginUseCase.HideLoading
+                    liveUseCase.value = LaunchUseCase.ShowError("Something weird here, should never happened")
                 }
             }
         }
