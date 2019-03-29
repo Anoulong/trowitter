@@ -31,30 +31,32 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonLogin.setOnClickListener(View.OnClickListener {
-            loginViewModel.getRemoteUser("batman@yopmail.com", "trv").observe(this, Observer { usecases ->
-                usecases?.let {
-                    when (usecases) {
-                        is LoginUseCase.navigateToMainScreen -> {
-                            activity?.let { loginActivity ->
-                                ActivityNavigator(loginActivity).navigate(
-                                    ActivityNavigator(loginActivity).createDestination()
-                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
-                                )
-                                loginActivity.finish()
-                            }
-                        }
-                        is LoginUseCase.ShowError -> {
-                            Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()
-                        }
-                        LoginUseCase.ShowLoading -> {
-//                        showTransparentProgressDialog()
-                        }
-                        LoginUseCase.HideLoading -> {
-//                        dismissProgressDialog()
+            loginViewModel.loginUser("batman@yopmail.com", "trov")
+        })
+
+        loginViewModel.loginUseCaseLiveData.observe(this, Observer { usecases ->
+            usecases?.let {
+                when (usecases) {
+                    is LoginUseCase.navigateToMainScreen -> {
+                        activity?.let { loginActivity ->
+                            ActivityNavigator(loginActivity).navigate(
+                                ActivityNavigator(loginActivity).createDestination()
+                                    .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
+                            )
+                            loginActivity.finish()
                         }
                     }
+                    is LoginUseCase.ShowError -> {
+                        Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()
+                    }
+                    LoginUseCase.ShowLoading -> {
+//                        showTransparentProgressDialog()
+                    }
+                    LoginUseCase.HideLoading -> {
+//                        dismissProgressDialog()
+                    }
                 }
-            })
+            }
         })
     }
 

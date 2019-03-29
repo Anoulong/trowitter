@@ -8,6 +8,7 @@ import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.db.user.UserEntity
 import com.anou.prototype.core.repository.LoginRepository
 import com.anou.prototype.core.strategy.ResourceStatus
+import com.anou.prototype.core.strategy.ResourceWrapper
 import com.anou.prototype.core.usecase.LaunchUseCase
 import com.anou.prototype.core.usecase.LoginUseCase
 import com.anou.prototype.core.usecase.LogoutUseCase
@@ -23,43 +24,41 @@ class LoginViewModel constructor(
     val applicationController: ApplicationController,
     val loginRepository: LoginRepository
 ) : BaseViewModel() {
+    val loginUseCaseLiveData = MediatorLiveData<LoginUseCase>()
 
-    fun getRemoteUser(email: String, password: String): LiveData<LoginUseCase> {
-        val liveSource = MutableLiveData<LoginUseCase>()
-        val liveUseCase = MediatorLiveData<LoginUseCase>()
-        liveSource.value = LoginUseCase.ShowLoading
+    fun loginUser(email: String, password: String) {
+        val loginLiveData = MutableLiveData<LoginUseCase>()
+        loginLiveData.value = LoginUseCase.ShowLoading
 
-        val source = Transformations.switchMap(liveSource) {
+        val liveLoginSource = Transformations.switchMap(loginLiveData) {
             loginRepository.getRemoteUser(email, password)
         }
 
-        liveUseCase.addSource(source) { result ->
+        loginUseCaseLiveData.addSource(liveLoginSource) { result ->
             when (result.status) {
                 ResourceStatus.LOADING,
                 ResourceStatus.FETCHING -> {
-                    liveUseCase.value = LoginUseCase.ShowLoading
+                    loginUseCaseLiveData.value = LoginUseCase.ShowLoading
                 }
                 ResourceStatus.SUCCESS -> {
                     result.value?.let { data ->
-                        liveUseCase.value = LoginUseCase.navigateToMainScreen(data)
+                        loginUseCaseLiveData.value = LoginUseCase.navigateToMainScreen(data)
                     }
-                    liveUseCase.value = LoginUseCase.HideLoading
+                    loginUseCaseLiveData.value = LoginUseCase.HideLoading
                 }
                 ResourceStatus.ERROR -> {
                     result.error?.message?.let { errorMessage ->
-                        liveUseCase.value = LoginUseCase.ShowError(errorMessage)
+                        loginUseCaseLiveData.value = LoginUseCase.ShowError(errorMessage)
                     }
-                    liveUseCase.value = LoginUseCase.HideLoading
+                    loginUseCaseLiveData.value = LoginUseCase.HideLoading
                 }
                 ResourceStatus.UNKNOWN,
                 ResourceStatus.INVALID -> {
-                    liveUseCase.value = LoginUseCase.ShowError("Something weird here, should never happened")
-                    liveUseCase.value = LoginUseCase.HideLoading
+                    loginUseCaseLiveData.value = LoginUseCase.ShowError("Something weird here, should never happened")
+                    loginUseCaseLiveData.value = LoginUseCase.HideLoading
                 }
             }
         }
-
-        return liveUseCase
     }
 
     fun getLocalUser(): LiveData<LaunchUseCase> {
