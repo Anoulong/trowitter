@@ -61,12 +61,12 @@ val commonModule = module {
 val repositoryModule = module {
     single { ModuleRepository(get(), get(), get()) }
     single { AboutRepository(get(), get(), get()) }
-    single { LoginRepository(get(), get(), get()) }
+    single { LoginRepository(get(), get(), get(), get()) }
 }
 
 val viewModelModule = module {
     viewModel { MainViewModel(get(), get()) }
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get()) }
 }
 
 val modules = listOf(commonModule, repositoryModule, viewModelModule)

@@ -17,7 +17,7 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginViewModel.getUser().observe(this, Observer { usecases ->
+        loginViewModel.getLocalUser().observe(this, Observer { usecases ->
             usecases?.let {
                 when (usecases) {
                     is LoginUseCase.navigateToMainScreen -> {
@@ -38,6 +38,13 @@ class SplashActivity : BaseActivity() {
                         )
                         this@SplashActivity.finish()
 
+                    }
+                    else -> {
+                        ActivityNavigator(this@SplashActivity).navigate(
+                            ActivityNavigator(this@SplashActivity).createDestination()
+                                .setIntent(Intent(this@SplashActivity, LoginActivity::class.java)), null, null, null
+                        )
+                        this@SplashActivity.finish()
                     }
                 }
             }

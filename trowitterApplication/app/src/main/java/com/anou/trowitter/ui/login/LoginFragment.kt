@@ -5,23 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.ActivityNavigator
+import com.anou.prototype.core.usecase.LoginUseCase
+import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.trowitter.R
-import com.anou.trowitter.utils.Constants
-import com.anou.prototype.core.viewmodel.MainViewModel
 import com.anou.trowitter.base.BaseFragment
-import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
-import kotlinx.android.synthetic.main.fragment_about.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : BaseFragment() {
 
-    val mainViewModel by viewModel<MainViewModel>()
-//    val mainRouter: MainRouter by inject()
+    val loginViewModel by viewModel<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,16 +30,46 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonLogin.setOnClickListener(View.OnClickListener {
-            activity?.let { loginActivity ->
-                ActivityNavigator(loginActivity).navigate(
-                    ActivityNavigator(loginActivity).createDestination()
-                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
-                )
-                loginActivity.finish()
-            }
+            loginViewModel.getRemoteUser("batman@yopmail.com", "trov").observe(this, Observer { usecases ->
+                usecases?.let {
+                    when (usecases) {
+                        is LoginUseCase.navigateToMainScreen -> {
+                            activity?.let { loginActivity ->
+                                ActivityNavigator(loginActivity).navigate(
+                                    ActivityNavigator(loginActivity).createDestination()
+                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
+                                )
+                                loginActivity.finish()
+                            }
 
+
+                        }
+                        is LoginUseCase.navigateToLoginScreen -> {
+
+                            activity?.let { loginActivity ->
+                                ActivityNavigator(loginActivity).navigate(
+                                    ActivityNavigator(loginActivity).createDestination()
+                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
+                                )
+                                loginActivity.finish()
+                            }
+
+
+                        }
+                        else -> {
+                            activity?.let { loginActivity ->
+                                ActivityNavigator(loginActivity).navigate(
+                                    ActivityNavigator(loginActivity).createDestination()
+                                        .setIntent(Intent(loginActivity, MainActivity::class.java)), null, null, null
+                                )
+                                loginActivity.finish()
+                            }
+
+                        }
+                    }
+                }
+            })
         })
-//        mainRouter.onFragmentViewed(activity as MainActivity, "Login")
     }
 
 }
