@@ -47,9 +47,6 @@ class LoginFragment : BaseFragment() {
             usecases?.let {
                 when (usecases) {
                     is LoginUseCase.navigateToMainScreen -> {
-                        snackbar?.let { snackbar ->
-                            snackbar.dismiss()
-                        }
                         activity?.let { loginActivity ->
                             ActivityNavigator(loginActivity).navigate(
                                 ActivityNavigator(loginActivity).createDestination()

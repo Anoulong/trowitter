@@ -66,9 +66,6 @@ class NewTweetFragmentDialog : DialogFragment() {
                     dismiss()
                 }
             }
-
-
-
         }
         return binding.root
     }
