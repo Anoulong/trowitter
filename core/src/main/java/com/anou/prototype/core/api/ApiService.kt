@@ -18,6 +18,7 @@ package com.anou.prototype.core.api
 
 import com.anou.prototype.core.db.about.AboutEntity
 import com.anou.prototype.core.db.module.ModuleEntity
+import com.anou.prototype.core.db.tweet.TweetEntity
 import com.anou.prototype.core.db.user.UserEntity
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
@@ -36,8 +37,10 @@ interface ApiService {
     @GET("modules.json")
     fun fetchModules(): Deferred<MutableList<ModuleEntity>>
 
-
     @GET("user.json")
     fun fetchUser(): Deferred<UserEntity>
+
+    @GET("tweets.json")
+    fun fetchTweets(): Deferred<MutableList<TweetEntity>>
 
 }

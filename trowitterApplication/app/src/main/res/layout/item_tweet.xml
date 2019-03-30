@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+                name="tweet"
+                type="com.anou.prototype.core.db.tweet.TweetEntity"/>
+
         <!--<variable-->
                 <!--name="viewModel"-->
                 <!--type="com.quickseries.core.viewmodel.PromoDetailViewModel" />-->
@@ -24,13 +28,13 @@
             app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/item_promo_card_layout"
+                android:id="@+id/item_tweet_card_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
             <ImageView
-                    android:id="@+id/item_promo_card_image"
+                    android:id="@+id/item_tweet_card_image"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
@@ -54,49 +58,49 @@
 
 
             <TextView
-                    android:id="@+id/item_promo_card_organization"
+                    android:id="@+id/item_tweet_card_comment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="@dimen/size_small"
-                    android:text="{viewModel.getPromo().organization}"
+                    android:text="@{tweet.comment}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/item_promo_card_favorite"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
-                    tools:text="organization organization organization organization organization organization organization organization organization" />
+                    app:layout_constraintEnd_toStartOf="@+id/item_tweet_card_favorite"
+                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_image"
+                    tools:text="comment comment comment comment" />
 
             <ImageView
-                    android:id="@+id/item_promo_card_favorite"
+                    android:id="@+id/item_tweet_card_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/size_small"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
+                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_image"
                     tools:src="@android:drawable/ic_dialog_email" />
 
 
             <TextView
-                    android:id="@+id/item_promo_card_title"
+                    android:id="@+id/item_tweet_card_title"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:padding="@dimen/size_small"
-                    android:text="{viewModel.getPromo().title}"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_organization"
+                    android:text="{viewModel.gettweet().title}"
+                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_organization"
                     tools:text="title title title title  title  title  title " />
 
 
             <TextView
-                    android:id="@+id/item_promo_card_duration"
+                    android:id="@+id/item_tweet_card_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="@dimen/size_small"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_title"
+                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_title"
                     tools:text="duration duration duration  " />
 
 

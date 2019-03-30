@@ -15,13 +15,11 @@ data class TweetEntity(
     @PrimaryKey
     var id: String,
 
-    var title: String? = null,
+    var comment: String? = null,
 
-    var subtitle: String? = null,
+    var type: String? = null,
 
     var image: String? = null,
-
-    var description: String? = null,
 
     @SerializedName("created_at")
     var createdAt: String? = null,
@@ -31,11 +29,10 @@ data class TweetEntity(
 
 ) : Parcelable, Comparable<TweetEntity> {
     override fun compareTo(other: TweetEntity): Int {
-        return title?.compareTo(other.title ?: "") ?: -1
+        return updatedAt?.compareTo(other.updatedAt ?: "") ?: -1
     }
 
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -47,10 +44,9 @@ data class TweetEntity(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeString(title)
-        parcel.writeString(subtitle)
+        parcel.writeString(comment)
+        parcel.writeString(type)
         parcel.writeString(image)
-        parcel.writeString(description)
         parcel.writeString(createdAt)
         parcel.writeString(updatedAt)
     }

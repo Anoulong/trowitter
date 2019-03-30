@@ -29,7 +29,6 @@ class MainViewModel(val applicationController: ApplicationController, val module
                     //                        showTransparentProgressDialog()
                 }
                 ResourceStatus.SUCCESS -> {
-                    liveUseCase.value = SideMenuUseCase.ShowSuccess("Bravo")
                     result.value?.let { data ->
                         liveUseCase.value = SideMenuUseCase.SetData(data)
 
