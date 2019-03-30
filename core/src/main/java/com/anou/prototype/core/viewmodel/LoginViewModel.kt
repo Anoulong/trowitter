@@ -84,6 +84,7 @@ class LoginViewModel constructor(
                 ResourceStatus.SUCCESS -> {
                     if (result.value?.let { data ->
                             liveUseCase.value = LaunchUseCase.navigateToMainScreen(data)
+                            applicationController.currentUser = data
                         } == null) {
                         liveUseCase.value = LaunchUseCase.navigateToLoginScreen
                     }
