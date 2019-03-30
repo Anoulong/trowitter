@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonLogin.setOnClickListener(View.OnClickListener {
-            loginViewModel.loginUser("batman@yopmail.com", "trv")
+            loginViewModel.loginUser("batman@yopmail.com", "trov")
         })
 
         loginViewModel.loginUseCaseLiveData.observe(this, Observer { usecases ->
