@@ -1,6 +1,8 @@
 <resources>
-    <string name="button_login_label">Login</string>
-    <string name="button_logout_label">Logout</string>
+    <string name="button_login_label">Log In</string>
+    <string name="button_logout_label">Log Out</string>
     <string name="setting_label">Setting</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
 
 </resources>
