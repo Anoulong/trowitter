@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!--<variable-->
+                <!--name="viewModel"-->
+                <!--type="com.quickseries.core.viewmodel.PromoDetailViewModel" />-->
+
+        <!--<variable-->
+                <!--name="mainRouter"-->
+                <!--type="com.quickseries.router.MainRouter" />-->
+
+        <!--<import type="com.quickseries.core.common.utils.DateTimeUtils" />-->
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_small"
+            app:cardCornerRadius="@dimen/default_radius"
+            app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/item_promo_card_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <ImageView
+                    android:id="@+id/item_promo_card_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,2:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@android:color/darker_gray" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/size_x_small"
+                    android:text="@string/button_logout_label"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+
+            <TextView
+                    android:id="@+id/item_promo_card_organization"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/size_small"
+                    android:text="{viewModel.getPromo().organization}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/item_promo_card_favorite"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
+                    tools:text="organization organization organization organization organization organization organization organization organization" />
+
+            <ImageView
+                    android:id="@+id/item_promo_card_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
+                    tools:src="@android:drawable/ic_dialog_email" />
+
+
+            <TextView
+                    android:id="@+id/item_promo_card_title"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:padding="@dimen/size_small"
+                    android:text="{viewModel.getPromo().title}"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_organization"
+                    tools:text="title title title title  title  title  title " />
+
+
+            <TextView
+                    android:id="@+id/item_promo_card_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/size_small"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_title"
+                    tools:text="duration duration duration  " />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

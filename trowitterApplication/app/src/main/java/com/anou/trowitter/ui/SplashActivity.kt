@@ -22,7 +22,6 @@ class SplashActivity : BaseActivity() {
             usecases?.let {
                 when (usecases) {
                     is LaunchUseCase.navigateToMainScreen -> {
-
                         ActivityNavigator(this@SplashActivity).navigate(
                             ActivityNavigator(this@SplashActivity).createDestination()
                                 .setIntent(Intent(this@SplashActivity, MainActivity::class.java)), null, null, null

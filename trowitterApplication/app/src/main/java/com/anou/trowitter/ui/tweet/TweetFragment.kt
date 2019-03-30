@@ -45,7 +45,7 @@ class TweetFragment : BaseFragment() {
 //        NavHostFragment.findNavController(this).navigate(R.id.welcomeFragment, null, navOptions)
 
 
-        textViewTitleTweet?.text = moduleEid
+//        textViewTitleTweet?.text = moduleEid
         mainRouter.onFragmentViewed(activity as MainActivity, moduleTitle)
     }
 
