@@ -4,5 +4,6 @@
     <string name="setting_label">Setting</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="tweet_new">New Tweet</string>
 
 </resources>

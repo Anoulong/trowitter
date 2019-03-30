@@ -15,6 +15,7 @@ import com.anou.trowitter.databinding.FragmentTweetBinding
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.Constants
+import kotlinx.android.synthetic.main.fragment_tweet.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -49,6 +50,10 @@ class TweetFragment : BaseFragment() {
         )
         binding.setLifecycleOwner(this)
         binding.fragmentTweetList.adapter = adapter
+
+        binding.newTweetFab.setOnClickListener(View.OnClickListener {
+            mainRouter.openNewTweetFragment(activity as MainActivity)
+        })
         return binding.root
     }
 

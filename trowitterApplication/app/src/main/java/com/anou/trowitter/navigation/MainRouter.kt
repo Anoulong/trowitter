@@ -1,5 +1,7 @@
 package com.anou.trowitter.navigation
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +13,8 @@ import com.anou.trowitter.R
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.ui.setting.SettingActivity
 import com.anou.trowitter.utils.Constants
+import com.anou.trowitter.ui.tweet.NewTweetFragmentDialog
+
 
 class MainRouter {
 
@@ -45,6 +49,14 @@ class MainRouter {
         }
 
         mainActivity.closeDrawer()
+    }
+
+    fun openNewTweetFragment(activity: Activity) {
+        activity.let { it as MainActivity
+            val dialog = NewTweetFragmentDialog.newInstance()
+            dialog.show(it.supportFragmentManager, NewTweetFragmentDialog.TAG)
+        }
+
     }
 
     fun onFragmentViewed(mainActivity: MainActivity, string: String) {
