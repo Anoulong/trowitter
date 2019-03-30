@@ -10,12 +10,29 @@
                 type="com.anou.prototype.core.viewmodel.TweetViewModel"/>
 
     </data>
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_tweet_list"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listItem="@layout/item_tweet"/>
+            tools:context="com.anou.trowitter.ui.tweet.TweetFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_tweet_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listItem="@layout/item_tweet"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/size_medium"
+                app:srcCompat="@android:drawable/ic_dialog_email"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>
