@@ -40,6 +40,7 @@
                     android:scaleType="centerCrop"
                     app:layout_constraintDimensionRatio="H,2:1"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:srcNetwork="@{tweet.image}"
                     tools:background="@android:color/darker_gray" />
 
             <TextView
@@ -89,17 +90,18 @@
                     android:maxLines="3"
                     android:padding="@dimen/size_small"
                     android:text="{viewModel.gettweet().title}"
-                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_organization"
+                    app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_comment"
                     tools:text="title title title title  title  title  title " />
 
 
             <TextView
-                    android:id="@+id/item_tweet_card_duration"
+                    android:id="@+id/item_tweet_card_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="@dimen/size_small"
+                    app:formatTimeAgo="@{tweet.createdAt}"
                     app:layout_constraintTop_toBottomOf="@+id/item_tweet_card_title"
                     tools:text="duration duration duration  " />
 

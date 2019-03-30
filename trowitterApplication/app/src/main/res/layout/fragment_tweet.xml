@@ -6,15 +6,16 @@
     <data>
 
         <variable
-        name="viewModel"
-        type="com.anou.prototype.core.viewmodel.TweetViewModel" />
+                name="viewModel"
+                type="com.anou.prototype.core.viewmodel.TweetViewModel"/>
 
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_tweet_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listItem="@layout/item_tweet"/>
 </layout>
