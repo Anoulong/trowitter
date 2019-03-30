@@ -44,7 +44,7 @@ internal class AboutRepositoryTest {
     }
 
     @Test
-    fun TestGetAboutWithNetwork() {
+    fun `test fetching about with network`() {
         val aboutRepository = AboutRepository(applicationDatabase, apiService, networkService)
         val observer = mock<Observer<ResourceWrapper<AboutEntity>>>()
         Mockito.`when`(networkService.getConnectionType()).thenReturn(NetworkConnectivityService.ConnectionType.TYPE_WIFI)
@@ -69,7 +69,7 @@ internal class AboutRepositoryTest {
     }
 
     @Test
-    fun TestGetAboutNoNetwork() {
+    fun `test fetching about without network`() {
                 val aboutRepository = AboutRepository(applicationDatabase, apiService, networkService)
         val observer = mock<Observer<ResourceWrapper<AboutEntity>>>()
         Mockito.`when`(networkService.getConnectionType()).thenReturn(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET)
@@ -93,7 +93,7 @@ internal class AboutRepositoryTest {
     }
 
     @Test
-    fun TestDeleteByModuleEid() {
+    fun `test deleting about`() {
         val aboutRepository = AboutRepository(applicationDatabase, apiService, networkService)
         Mockito.`when`(applicationDatabase.aboutDao()).thenReturn(aboutDao)
         Mockito.`when`(aboutDao.deleteByModuleEid("abc")).thenReturn(1)
@@ -101,10 +101,5 @@ internal class AboutRepositoryTest {
         aboutRepository.deleteByModuleEid("abc")
         verify(aboutDao).deleteByModuleEid("abc")
     }
-
-//    @Test
-//    fun `test something works as expected`() {
-//        Assertions.assertTrue(true)
-//    }
 
 }
