@@ -19,12 +19,14 @@ class TweetRepository(
         private val networkConnectivityService: NetworkConnectivityService
 ) : BaseRepository() {
 
-    fun loadTweets(): LiveData<ResourceWrapper<MutableList<TweetEntity>>> = object : RemoteDataFirstStrategy<MutableList<TweetEntity>>() {
+    fun loadTweets(): LiveData<ResourceWrapper<MutableList<TweetEntity>>> = object : LocalDataAwareFirstStrategy<MutableList<TweetEntity>>() {
         override fun isRemoteAvailable(): Boolean  = true
 
         override suspend fun fetchData(): Deferred<MutableList<TweetEntity>> = apiService.fetchTweets()
 
-        override suspend fun readData(): Deferred<MutableList<TweetEntity>> = CompletableDeferred(applicationDatabase.tweetDao().loadTweets())
+        override suspend fun readData(): Deferred<LiveData<MutableList<TweetEntity>>> {
+            return CompletableDeferred(applicationDatabase.tweetDao().loadTweets())
+        }
 
         override suspend fun writeData(data: MutableList<TweetEntity>) {
             applicationDatabase.tweetDao().insertAll(data)

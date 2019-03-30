@@ -97,4 +97,9 @@ class TweetFragment : BaseFragment() {
         binding.viewModel = tweetViewModel
     }
 
+    override fun onResume() {
+        super.onResume()
+        tweetViewModel.refresh()
+    }
 }
+

@@ -9,14 +9,13 @@ import com.anou.prototype.core.usecase.TweetUseCase
 
 class TweetViewModel(val applicationController: ApplicationController, val tweetRepository: TweetRepository) :
     BaseViewModel() {
-
+    val tweetLiveData= MutableLiveData<Boolean>()
 
     fun getTweets(): LiveData<TweetUseCase> {
-        val liveSource = MutableLiveData<TweetUseCase>()
         val liveUseCase = MediatorLiveData<TweetUseCase>()
-        liveSource.value = TweetUseCase.ShowEmpty("")
+        tweetLiveData.value = true
 
-        val source = Transformations.switchMap(liveSource) {
+        val source = Transformations.switchMap(tweetLiveData) {
             tweetRepository.loadTweets()
         }
 
@@ -50,6 +49,9 @@ class TweetViewModel(val applicationController: ApplicationController, val tweet
         return liveUseCase
     }
 
+    fun refresh(){
+        tweetLiveData.value = true
+    }
     fun createTweet(lifecycleOwner: LifecycleOwner, tweetEntity: TweetEntity) {
         tweetRepository.insertTweets(tweetEntity).observe(lifecycleOwner, Observer { result ->
             when (result.status) {
