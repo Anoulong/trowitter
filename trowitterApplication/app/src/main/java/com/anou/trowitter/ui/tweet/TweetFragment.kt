@@ -11,6 +11,7 @@ import com.anou.prototype.core.usecase.TweetUseCase
 import com.anou.prototype.core.viewmodel.TweetViewModel
 import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseFragment
+import com.anou.trowitter.databinding.FragmentTweetBinding
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.Constants

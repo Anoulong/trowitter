@@ -7,9 +7,12 @@ import com.anou.prototype.core.db.ApplicationDatabase
 import com.anou.prototype.core.repository.AboutRepository
 import com.anou.prototype.core.repository.LoginRepository
 import com.anou.prototype.core.repository.ModuleRepository
+import com.anou.prototype.core.repository.TweetRepository
 import com.anou.prototype.core.service.NetworkConnectivityService
+import com.anou.prototype.core.viewmodel.AboutViewModel
 import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.prototype.core.viewmodel.MainViewModel
+import com.anou.prototype.core.viewmodel.TweetViewModel
 import com.anou.trowitter.BuildConfig
 import com.anou.trowitter.controller.ApplicationControllerImpl
 import com.anou.trowitter.navigation.MainRouter
@@ -62,11 +65,14 @@ val repositoryModule = module {
     single { ModuleRepository(get(), get(), get()) }
     single { AboutRepository(get(), get(), get()) }
     single { LoginRepository(get(), get(), get(), get()) }
+    single { TweetRepository(get(), get(), get()) }
 }
 
 val viewModelModule = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
+    viewModel { TweetViewModel(get(), get()) }
+    viewModel { AboutViewModel(get()) }
 }
 
 val modules = listOf(commonModule, repositoryModule, viewModelModule)
