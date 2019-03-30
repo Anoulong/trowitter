@@ -12,9 +12,11 @@ import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseRecyclerViewAdapter
 import com.anou.trowitter.databinding.ItemTweetBinding
 import com.anou.trowitter.navigation.MainRouter
+import com.anou.trowitter.utils.DateTimeUtils
 
 
-class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInflater, val mainRouter: MainRouter) : BaseRecyclerViewAdapter<TweetEntity, TweetAdapter.TweetViewHolder>() {
+class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInflater, val mainRouter: MainRouter) :
+    BaseRecyclerViewAdapter<TweetEntity, TweetAdapter.TweetViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
@@ -34,13 +36,20 @@ class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInfla
         return position
     }
 
-    class TweetViewHolder(lifecycleOwner: LifecycleOwner, val binding: ItemTweetBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TweetViewHolder(lifecycleOwner: LifecycleOwner, val binding: ItemTweetBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        constructor(lifecycleOwner: LifecycleOwner, inflater: LayoutInflater, container: ViewGroup) : this(lifecycleOwner, DataBindingUtil.inflate(inflater, R.layout.item_tweet, container, false))
+        constructor(lifecycleOwner: LifecycleOwner, inflater: LayoutInflater, container: ViewGroup) : this(
+            lifecycleOwner,
+            DataBindingUtil.inflate(inflater, R.layout.item_tweet, container, false)
+        )
 
         fun bind(tweet: TweetEntity) {
             binding.tweet = tweet
-            binding.itemTweetCardImage.visibility = if(tweet.image?.trim().isNullOrBlank()) View.GONE else View.VISIBLE
+            binding.itemTweetCardImage.visibility = if (tweet.image?.trim().isNullOrBlank()) View.GONE else View.VISIBLE
+            tweet.createdAt?.let {
+                binding.itemTweetCardDate.text = DateTimeUtils.getTimeAgo(it)
+            }
         }
     }
 

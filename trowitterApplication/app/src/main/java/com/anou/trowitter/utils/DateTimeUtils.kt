@@ -16,7 +16,7 @@ object DateTimeUtils {
         }
         var newDate = Date()
         val sdf = SimpleDateFormat(pattern, Locale.US)
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT"))
+//        sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
         if (date != null) {
             try {
                 newDate = sdf.parse(date)
@@ -29,10 +29,10 @@ object DateTimeUtils {
         return newDate
     }
 
-    fun getTimeAgo(updatedAt: String): String {
+    fun getTimeAgo(createdAt: String): String {
         // Convert timestamp to useful string description based on age
-        val now = System.currentTimeMillis()
-        val updated = parseDate(updatedAt).getTime().toLong()
+        val now = Date().time
+        val updated = parseDate(createdAt).getTime()
         val ago =
             DateUtils.getRelativeTimeSpanString(updated, now, DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
 
@@ -40,7 +40,7 @@ object DateTimeUtils {
     }
 
     fun getCurrentDate(): String {
-        val sdf = SimpleDateFormat(DATE_FORMAT)
+        val sdf = SimpleDateFormat(DATE_FORMAT, Locale.US)
         val currentDateAndTime = sdf.format(Date())
         return currentDateAndTime
     }
