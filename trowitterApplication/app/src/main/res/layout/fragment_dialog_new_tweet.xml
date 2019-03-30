@@ -1,82 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:fitsSystemWindows="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/newTweetToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            app:title="@string/tweet_new"
-            app:titleTextColor="@color/colorPrimary">
+    <data>
 
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-            <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/buttonSendTweet"
-                    android:background="@color/colorPrimary"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/size_small"
-                    android:layout_alignParentEnd="true"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:text="@string/button_tweet_label"
-                    android:textStyle="bold"/>
-        </RelativeLayout>
+        <variable
+                name="viewModel"
+                type="com.anou.prototype.core.viewmodel.TweetViewModel"/>
 
-    </androidx.appcompat.widget.Toolbar>
+        <variable
+                name="user"
+                type="com.anou.prototype.core.db.user.UserEntity"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:background="@color/white">
 
-        <TextView
-                android:id="@+id/newTweetUsername"
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/newTweetToolbar"
                 android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/font_medium"
-                android:layout_height="@dimen/size_xx_large"
-                android:layout_marginTop="@dimen/size_large"
-                android:gravity="start|center_vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="@dimen/font_xlarge"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/newTweetEditText"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
-                android:text="@string/tweet_new"/>
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/tweet_new"
+                app:titleTextColor="@color/colorPrimary">
 
-        <EditText
-                android:id="@+id/newTweetEditText"
-                app:layout_constraintTop_toBottomOf="@+id/newTweetUsername"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:backgroundTint="@color/white"
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/buttonSendTweet"
+                        android:background="@color/colorPrimary"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/size_small"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:text="@string/button_tweet_label"
+                        android:textStyle="bold"/>
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/font_medium"
-                android:layout_marginStart="@dimen/size_large"
-                android:layout_marginEnd="@dimen/size_large"
-                android:textColor="@color/browser_actions_title_color"
-                android:background="@color/white"
-                android:inputType="textMultiLine"
-                android:gravity="top|left"
-                android:focusable="true"
-                android:hint="@string/new_tweet_hint"
-                android:focusableInTouchMode="true"
-                android:focusedByDefault="true"
-                android:minLines="5"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+                android:layout_marginTop="?attr/actionBarSize">
+
+            <TextView
+                    android:id="@+id/newTweetUsername"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/font_medium"
+                    android:layout_height="@dimen/size_xx_large"
+                    android:layout_marginTop="@dimen/size_large"
+                    android:gravity="start|center_vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="@dimen/font_xlarge"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/newTweetEditText"
+                    android:background="@color/white"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:text="@{user.username}"/>
+
+            <EditText
+                    android:id="@+id/newTweetEditText"
+                    app:layout_constraintTop_toBottomOf="@+id/newTweetUsername"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:backgroundTint="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/font_medium"
+                    android:layout_marginStart="@dimen/size_large"
+                    android:layout_marginEnd="@dimen/size_large"
+                    android:textColor="@color/browser_actions_title_color"
+                    android:background="@color/white"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|left"
+                    android:focusable="true"
+                    android:hint="@string/new_tweet_hint"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="true"
+                    android:minLines="5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
