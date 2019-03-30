@@ -69,8 +69,10 @@ class TweetFragment : BaseFragment() {
 
                 when (usecases) {
                     is TweetUseCase.SetData -> {
-                        adapter.setData(usecases.tweets)
-                        binding.fragmentTweetList.smoothScrollToPosition(adapter.itemCount - 1)
+                        if(!usecases.tweets.isNullOrEmpty()) {
+                            adapter.setData(usecases.tweets)
+                            binding.fragmentTweetList.smoothScrollToPosition(adapter.itemCount - 1)
+                        }
                     }
                     is TweetUseCase.ShowError -> {
                         Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()

@@ -37,26 +37,6 @@ class LoginFragment : BaseFragment() {
 
         email.setupClearButtonWithAction()
 
-        buttonLogin?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-
-            }
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                if (charSequence.length > 0) {
-//                    registrationEmailErrorTextView?.visibility = if (isValidEmail(charSequence.toString())) View.GONE else View.VISIBLE
-                }
-//                registrationNextButton?.isEnabled = isValidEmail(charSequence.toString())
-//                if (isValidEmail(charSequence.toString())) {
-//                    applicationController.userEmail = charSequence.toString()
-//                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {
-
-            }
-        })
-
         buttonLogin.setOnClickListener(View.OnClickListener {
             loginViewModel.loginUser(email.text.toString(), password.text.toString())
         })
