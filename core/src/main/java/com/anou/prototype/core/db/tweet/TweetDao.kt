@@ -10,7 +10,7 @@ import com.anou.prototype.core.db.tweet.TweetEntity
 
 @Dao
 abstract class TweetDao {
-    @Query("SELECT * FROM Tweet ORDER BY date(createdAt) ASC")
+    @Query("SELECT * FROM Tweet ORDER BY date(createdAt) DESC")
     abstract fun loadTweets(): MutableList<TweetEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
