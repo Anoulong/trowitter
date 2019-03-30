@@ -33,6 +33,12 @@ class NewTweetFragmentDialog : DialogFragment() {
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.ThemeOverlay_Material_ActionBar);
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        getDialog().getWindow()
+            .getAttributes().windowAnimations = R.style.DialogAnimation;
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_dialog_new_tweet, container, false)
     }
@@ -44,4 +50,6 @@ class NewTweetFragmentDialog : DialogFragment() {
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(true)
         newTweetToolbar.setNavigationOnClickListener { dismiss() }
     }
+
+
 }
