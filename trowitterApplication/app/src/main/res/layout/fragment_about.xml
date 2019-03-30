@@ -1,21 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.anou.trowitter.ui.about.AboutFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textViewTitleAbout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--<variable-->
+                <!--name="viewModel"-->
+                <!--type="com.quickseries.core.viewmodel.PromoDetailViewModel" />-->
+
+        <!--<import type="com.quickseries.core.common.utils.DateTimeUtils" />-->
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/item_promo_card_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="H,2:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/browser_actions_bg_grey" />
+
+
+            <TextView
+                    android:id="@+id/item_promo_card_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/size_small"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
+                    tools:text="duration duration duration  " />
+
+
+            <TextView
+                    android:id="@+id/textViewTitleAbout"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_small"
+                    android:text="{viewModel.getPromo().title}"
+                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_duration"
+                    tools:text="title title title title title title title title" />
+
+            <TextView
+                    android:id="@+id/item_promo_card_organization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/size_small"
+                    android:text="{viewModel.getPromo().organization}"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTitleAbout"
+                    tools:text="organization organization" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
