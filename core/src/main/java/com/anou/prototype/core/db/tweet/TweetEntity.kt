@@ -5,8 +5,10 @@ import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.anou.prototype.core.db.module.ModuleEntity
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 
 @Entity(tableName = "Tweet")
@@ -35,6 +37,10 @@ data class TweetEntity(
     override fun compareTo(other: TweetEntity): Int {
         return updatedAt?.compareTo(other.updatedAt ?: "") ?: -1
     }
+
+    constructor(username: String?, comment: String?, createdAt: String?, updatedAt: String?) : this(
+        UUID.randomUUID().toString(), username, null, comment, ModuleEntity.TWEET, "", createdAt, updatedAt
+    )
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

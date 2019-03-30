@@ -6,9 +6,11 @@ import java.util.*
 
 
 object DateTimeUtils {
+    const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+
     /* Get date String with UTC format and return Date with millisecond format */
     fun parseDate(date: String?): Date {
-        var pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        var pattern = DATE_FORMAT
         if (!date.isNullOrBlank()) {
             pattern = if (date!!.contains(".")) "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" else "yyyy-MM-dd'T'HH:mm:ss'Z'"
         }
@@ -26,6 +28,7 @@ object DateTimeUtils {
         }
         return newDate
     }
+
     fun getTimeAgo(updatedAt: String): String {
         // Convert timestamp to useful string description based on age
         val now = System.currentTimeMillis()
@@ -34,5 +37,11 @@ object DateTimeUtils {
             DateUtils.getRelativeTimeSpanString(updated, now, DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR)
 
         return ago.toString()
+    }
+
+    fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat(DATE_FORMAT)
+        val currentDateAndTime = sdf.format(Date())
+        return currentDateAndTime
     }
 }

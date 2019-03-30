@@ -36,6 +36,8 @@ data class UserEntity(
         return lastname?.compareTo(other.lastname ?: "") ?: -1
     }
 
+
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),

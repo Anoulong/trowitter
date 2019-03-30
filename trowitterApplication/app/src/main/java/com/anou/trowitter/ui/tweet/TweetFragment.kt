@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.anou.prototype.core.usecase.TweetUseCase
 import com.anou.prototype.core.viewmodel.TweetViewModel
 import com.anou.trowitter.R
@@ -29,8 +30,10 @@ class TweetFragment : BaseFragment() {
     lateinit var adapter: TweetAdapter
     lateinit var moduleId: String
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         arguments?.let { bundle ->
             bundle.get(Constants.MODULE_ID)?.let { id ->
@@ -67,9 +70,7 @@ class TweetFragment : BaseFragment() {
                 when (usecases) {
                     is TweetUseCase.SetData -> {
                         adapter.setData(usecases.tweets)
-                    }
-                    is TweetUseCase.InitializeModule -> {
-//                        mainRouter.onModuleSelected(activity as MainActivity, usecases.tweet, true)
+                        binding.fragmentTweetList.scrollToPosition(adapter.itemCount - 1)
                     }
                     is TweetUseCase.ShowError -> {
                         Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()

@@ -9,6 +9,7 @@ import com.anou.prototype.core.service.NetworkConnectivityService
 import com.anou.prototype.core.strategy.LocalDataAwareFirstStrategy
 import com.anou.prototype.core.strategy.RemoteDataFirstStrategy
 import com.anou.prototype.core.strategy.ResourceWrapper
+import com.anou.prototype.core.strategy.WriteLocalDataStrategy
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred
 
@@ -27,6 +28,17 @@ class TweetRepository(
 
         override suspend fun writeData(data: MutableList<TweetEntity>) {
             applicationDatabase.tweetDao().insertAll(data)
+        }
+    }.asLiveData()
+
+    /**
+     * We should POST to an API endpoint, for the purpose of this test, data will be store locally
+     */
+
+    fun insertTweets(tweetEntity: TweetEntity): LiveData<ResourceWrapper<TweetEntity>> = object : WriteLocalDataStrategy<TweetEntity>(value = tweetEntity) {
+        override suspend fun writeData(data: TweetEntity): Deferred<TweetEntity> {
+            applicationDatabase.tweetDao().insert(data)
+            return CompletableDeferred(data)
         }
     }.asLiveData()
 }

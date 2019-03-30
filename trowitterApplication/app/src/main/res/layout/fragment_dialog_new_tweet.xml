@@ -9,10 +9,6 @@
                 name="viewModel"
                 type="com.anou.prototype.core.viewmodel.TweetViewModel"/>
 
-        <variable
-                name="user"
-                type="com.anou.prototype.core.db.user.UserEntity"/>
-
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -65,8 +61,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/newTweetEditText"
                     android:background="@color/white"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"
-                    android:text="@{user.username}"/>
+                    android:textStyle="bold"/>
 
             <EditText
                     android:id="@+id/newTweetEditText"
