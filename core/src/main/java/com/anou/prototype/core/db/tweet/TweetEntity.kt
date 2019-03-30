@@ -39,7 +39,7 @@ data class TweetEntity(
     }
 
     constructor(username: String?, comment: String?, createdAt: String?, updatedAt: String?) : this(
-        UUID.randomUUID().toString(), username,  arrayListOf<String>(), comment, ModuleEntity.TWEET, "https://cdn.pixabay.com/photo/2017/04/02/22/36/easter-2197043_1280.jpg", createdAt, updatedAt
+        UUID.randomUUID().toString(), username,  arrayListOf<String>(), comment, ModuleEntity.TWEET, "", createdAt, updatedAt
     )
 
     constructor(parcel: Parcel) : this(

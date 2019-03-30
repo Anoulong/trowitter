@@ -9,15 +9,6 @@
                 name="tweet"
                 type="com.anou.prototype.core.db.tweet.TweetEntity"/>
 
-        <!--<variable-->
-                <!--name="viewModel"-->
-                <!--type="com.quickseries.core.viewmodel.PromoDetailViewModel" />-->
-
-        <!--<variable-->
-                <!--name="mainRouter"-->
-                <!--type="com.quickseries.router.MainRouter" />-->
-
-        <!--<import type="com.quickseries.core.common.utils.DateTimeUtils" />-->
     </data>
 
     <androidx.cardview.widget.CardView

@@ -2,6 +2,7 @@ package com.anou.trowitter.ui.tweet
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
@@ -26,7 +27,6 @@ class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInfla
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
         holder.bind(getItem(position))
-//        holder.itemView.setOnClickListener { mainRouter.onModuleSelected(holder.itemView.context as MainActivity, getItem(position), false) }
     }
 
 
@@ -40,6 +40,7 @@ class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInfla
 
         fun bind(tweet: TweetEntity) {
             binding.tweet = tweet
+            binding.itemTweetCardImage.visibility = if(tweet.image?.trim().isNullOrBlank()) View.GONE else View.VISIBLE
         }
     }
 
