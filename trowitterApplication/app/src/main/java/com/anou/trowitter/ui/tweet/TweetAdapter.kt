@@ -47,9 +47,6 @@ class TweetAdapter(val lifecycleOwner: LifecycleOwner, val inflater: LayoutInfla
         fun bind(tweet: TweetEntity) {
             binding.tweet = tweet
             binding.itemTweetCardImage.visibility = if (tweet.image?.trim().isNullOrBlank()) View.GONE else View.VISIBLE
-            tweet.createdAt?.let {
-                binding.itemTweetCardDate.text = DateTimeUtils.getTimeAgo(it)
-            }
         }
     }
 
