@@ -15,6 +15,10 @@ data class TweetEntity(
     @PrimaryKey
     var id: String,
 
+    var username: String? = null,
+
+    var tag: ArrayList<String>? = arrayListOf<String>(),
+
     var comment: String? = null,
 
     var type: String? = null,
@@ -35,6 +39,8 @@ data class TweetEntity(
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
+        parcel.createStringArrayList(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -44,6 +50,8 @@ data class TweetEntity(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
+        parcel.writeString(username)
+        parcel.writeStringList(tag)
         parcel.writeString(comment)
         parcel.writeString(type)
         parcel.writeString(image)
@@ -54,6 +62,7 @@ data class TweetEntity(
     override fun describeContents(): Int {
         return 0
     }
+
 
     companion object CREATOR : Parcelable.Creator<TweetEntity> {
         override fun createFromParcel(parcel: Parcel): TweetEntity {

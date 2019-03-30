@@ -31,19 +31,9 @@ class SideMenuFragment : BaseFragment() {
 
     lateinit var binding: FragmentSideMenuBinding
     lateinit var adapter: SideMenuAdapter
-    lateinit var categoryEid: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        arguments?.let { bundle ->
-            bundle.get(Constants.CATEGORY_EID)?.let { eid ->
-                categoryEid = eid.toString()
-            }
-            bundle.get(Constants.CATEGORY_TITLE)?.let { title ->
-                mainRouter.onFragmentViewed(activity as MainActivity, title.toString())
-            }
-        }
 
         // Bind views
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu, container, false)

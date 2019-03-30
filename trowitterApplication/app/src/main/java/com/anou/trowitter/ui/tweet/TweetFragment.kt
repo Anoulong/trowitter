@@ -26,16 +26,16 @@ class TweetFragment : BaseFragment() {
 
     lateinit var binding: FragmentTweetBinding
     lateinit var adapter: TweetAdapter
-    lateinit var categoryEid: String
+    lateinit var moduleId: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         arguments?.let { bundle ->
-            bundle.get(Constants.CATEGORY_EID)?.let { eid ->
-                categoryEid = eid.toString()
+            bundle.get(Constants.MODULE_ID)?.let { id ->
+                moduleId = id.toString()
             }
-            bundle.get(Constants.CATEGORY_TITLE)?.let { title ->
+            bundle.get(Constants.MODULE_TITLE)?.let { title ->
                 mainRouter.onFragmentViewed(activity as MainActivity, title.toString())
             }
         }

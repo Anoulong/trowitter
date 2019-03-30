@@ -11,6 +11,7 @@ import java.util.*
  */
 object StringConverter {
     @TypeConverter
+    @JvmStatic
     fun fromString(value: String): ArrayList<String> {
         value.isNotBlank().let {
             val strings = Gson().fromJson(value, Array<String>::class.java)
@@ -22,6 +23,7 @@ object StringConverter {
     }
 
     @TypeConverter
+    @JvmStatic
     fun fromArrayList(list: ArrayList<String>): String {
         val gson = Gson()
         return gson.toJson(list)
