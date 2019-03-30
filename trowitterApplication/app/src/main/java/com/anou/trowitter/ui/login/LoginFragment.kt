@@ -16,6 +16,7 @@ import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseFragment
 import com.anou.trowitter.extension.setupClearButtonWithAction
 import com.anou.trowitter.ui.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LoginFragment : BaseFragment() {
 
     val loginViewModel by viewModel<LoginViewModel>()
+    lateinit var snackbar: Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,9 @@ class LoginFragment : BaseFragment() {
             usecases?.let {
                 when (usecases) {
                     is LoginUseCase.navigateToMainScreen -> {
+                        snackbar?.let { snackbar ->
+                            snackbar.dismiss()
+                        }
                         activity?.let { loginActivity ->
                             ActivityNavigator(loginActivity).navigate(
                                 ActivityNavigator(loginActivity).createDestination()
@@ -54,7 +59,16 @@ class LoginFragment : BaseFragment() {
                         }
                     }
                     is LoginUseCase.ShowError -> {
-                        Toast.makeText(activity, usecases.errorMessage, Toast.LENGTH_LONG).show()
+                        activity?.let { loginActivity ->
+                            snackbar = Snackbar.make(
+                                loginActivity?.findViewById(R.id.loginCoordinatorLayout),
+                                usecases.errorMessage,
+                                Snackbar.LENGTH_LONG
+                            )
+                            if(!snackbar.isShownOrQueued) {
+                                snackbar.show()
+                            }
+                        }
                     }
                     LoginUseCase.ShowLoading -> {
 //                        showTransparentProgressDialog()

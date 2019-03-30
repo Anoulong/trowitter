@@ -111,6 +111,10 @@ android {
         javaMaxHeapSize "4g"
         preDexLibraries false
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 //endregion
 
@@ -220,10 +224,35 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
-    // Android Test
+    // Tests
     testImplementation 'junit:junit:4.12'
-    testImplementation "org.mockito:mockito-core:2.23.4"
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestUtil 'com.android.support.test:orchestrator:1.0.2'
+    testImplementation "androidx.arch.core:core-testing:2.0.0"
+    testImplementation 'org.mockito:mockito-core:2.23.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:2.23.4'
+    testImplementation "org.mockito:mockito-inline:2.23.4"
+    testImplementation 'org.assertj:assertj-core:3.11.1'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.3.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.2"
+
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation('androidx.test:rules:1.1.0-alpha4') {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation('androidx.test.ext:junit:1.1.0') {
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4') {
+        exclude module: 'testing-support-lib'
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+        exclude group: 'javax.inject'
+    }
+    androidTestImplementation 'org.mockito:mockito-android:2.23.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
 }
 //endregion

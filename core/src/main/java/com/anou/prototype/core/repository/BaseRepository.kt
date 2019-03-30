@@ -12,12 +12,10 @@ open class BaseRepository {
 
     init {
         this.repositoryJob = Job()
-        Log.d(TAG, "init repositoryJob")
     }
 
     fun onJobCancelled() {
         repositoryJob?.cancel()
-        Log.d(TAG, "onJobCancelled")
     }
 
     protected fun addDisposable(subscription: Disposable) {
@@ -25,12 +23,10 @@ open class BaseRepository {
     }
 
     fun clearObservables() {
-        Log.d(TAG, "$TAG cleared")
         if (!repositorySubscriptions.isDisposed) {
             repositorySubscriptions.dispose()
         }
         repositoryJob?.cancel()
-        Log.d(TAG, "cancelled")
     }
 
     companion object {
