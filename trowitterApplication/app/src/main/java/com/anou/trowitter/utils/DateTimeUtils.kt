@@ -1,10 +1,8 @@
 package com.anou.trowitter.utils
 
-import android.text.format.DateUtils.FORMAT_SHOW_YEAR
-import android.text.format.DateUtils.MINUTE_IN_MILLIS
+import android.text.format.DateUtils
 import java.text.SimpleDateFormat
 import java.util.*
-import android.text.format.DateUtils;
 
 
 object DateTimeUtils {

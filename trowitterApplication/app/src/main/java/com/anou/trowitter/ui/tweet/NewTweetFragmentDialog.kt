@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.anou.prototype.core.viewmodel.TweetViewModel
 import com.anou.trowitter.R
 import com.anou.trowitter.navigation.MainRouter
+import com.anou.trowitter.utils.DrawableUtils
 import kotlinx.android.synthetic.main.fragment_dialog_new_tweet.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,8 +48,10 @@ class NewTweetFragmentDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(newTweetToolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
         newTweetToolbar.setNavigationOnClickListener { dismiss() }
+        newTweetToolbar.navigationIcon = DrawableUtils.getTintedDrawable(activity as AppCompatActivity, R.drawable.ic_action_close, R.color.colorPrimary)
+
     }
 
 
