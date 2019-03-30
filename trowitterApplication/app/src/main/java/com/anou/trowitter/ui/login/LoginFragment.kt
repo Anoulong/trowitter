@@ -2,6 +2,8 @@ package com.anou.trowitter.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.anou.prototype.core.usecase.LoginUseCase
 import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.trowitter.R
 import com.anou.trowitter.base.BaseFragment
+import com.anou.trowitter.extension.setupClearButtonWithAction
 import com.anou.trowitter.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,6 +33,30 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupCloseKeyboardOnTouchOutside(view)
+
+        email.setupClearButtonWithAction()
+
+        buttonLogin?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+
+            }
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                if (charSequence.length > 0) {
+//                    registrationEmailErrorTextView?.visibility = if (isValidEmail(charSequence.toString())) View.GONE else View.VISIBLE
+                }
+//                registrationNextButton?.isEnabled = isValidEmail(charSequence.toString())
+//                if (isValidEmail(charSequence.toString())) {
+//                    applicationController.userEmail = charSequence.toString()
+//                }
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+
+            }
+        })
+
         buttonLogin.setOnClickListener(View.OnClickListener {
             loginViewModel.loginUser(email.text.toString(), password.text.toString())
         })

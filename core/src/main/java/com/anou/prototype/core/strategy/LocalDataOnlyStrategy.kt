@@ -23,9 +23,7 @@ abstract class LocalDataOnlyStrategy<T>(mainScope: CoroutineScope = CoroutineSco
                 liveData.postValue(ResourceWrapper(status = ResourceStatus.LOADING, localData = true, strategy = this@LocalDataOnlyStrategy::class))
                 val task = withContext(localScope.coroutineContext) { readData() }
                 val data = task.await()
-                data?.let {
-                    liveData.postValue(ResourceWrapper(value = data, status = ResourceStatus.SUCCESS, localData = true, strategy = this@LocalDataOnlyStrategy::class))
-                }
+                liveData.postValue(ResourceWrapper(value = data, status = ResourceStatus.SUCCESS, localData = true, strategy = this@LocalDataOnlyStrategy::class))
             } catch (error: Throwable) {
                 liveData.postValue(ResourceWrapper(error = error, status = ResourceStatus.ERROR, localData = true, strategy = this@LocalDataOnlyStrategy::class))
             }
