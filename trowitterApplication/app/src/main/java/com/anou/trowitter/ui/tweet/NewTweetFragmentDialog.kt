@@ -1,6 +1,7 @@
 package com.anou.trowitter.ui.tweet
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,13 @@ import com.anou.prototype.core.viewmodel.LoginViewModel
 import com.anou.prototype.core.viewmodel.TweetViewModel
 import com.anou.trowitter.R
 import com.anou.trowitter.databinding.FragmentDialogNewTweetBinding
+import com.anou.trowitter.extension.setupClearButtonWithAction
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.DateTimeUtils
 import com.anou.trowitter.utils.DrawableUtils
 import kotlinx.android.synthetic.main.fragment_dialog_new_tweet.*
+import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
@@ -56,13 +59,17 @@ class NewTweetFragmentDialog : DialogFragment() {
         binding.buttonSendTweet.setOnClickListener {
 
             if(binding.newTweetEditText.text.isNullOrBlank()){
-                Toast.makeText(activity, "Empty Tweet is unpleasant to read!", Toast.LENGTH_SHORT).show()
+             val   toast    =  Toast.makeText(activity, "Empty Tweet is unpleasant to read!", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();
             }else{
                 applicationController.currentUser.username?.let {name ->
                     binding.newTweetUsername.setText(name)
                     val tweetEntity = TweetEntity(name, binding.newTweetEditText.text.toString(), DateTimeUtils.getCurrentDate(),  DateTimeUtils.getCurrentDate() )
                     tweetViewModel.createTweet(this, tweetEntity)
-                    Toast.makeText(activity, "Tweet sent!", Toast.LENGTH_SHORT).show()
+                    val   toast    =     Toast.makeText(activity, "Tweet sent!", Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    toast.show();
                     dismiss()
                 }
             }
@@ -79,7 +86,7 @@ class NewTweetFragmentDialog : DialogFragment() {
         newTweetToolbar.navigationIcon = DrawableUtils.getTintedDrawable(
             activity as AppCompatActivity,
             R.drawable.ic_action_close,
-            R.color.colorPrimary
+            R.color.colorPrimaryDark
         )
     }
 
