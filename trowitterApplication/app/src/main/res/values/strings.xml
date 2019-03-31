@@ -7,5 +7,6 @@
     <string name="tweet_new">New Tweet</string>
     <string name="new_tweet_hint">What\'s new?</string>
     <string name="button_tweet_label">Send Tweet</string>
+    <string name="profile_username">%1$s (%2$s %3$s)</string>
 
 </resources>

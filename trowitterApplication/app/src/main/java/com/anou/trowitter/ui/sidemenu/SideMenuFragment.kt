@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.anou.prototype.core.controller.ApplicationController
 import com.anou.prototype.core.usecase.SideMenuUseCase.SetData
 import com.anou.prototype.core.usecase.SideMenuUseCase.InitializeModule
 import com.anou.prototype.core.usecase.SideMenuUseCase.ShowSuccess
@@ -21,6 +22,7 @@ import com.anou.trowitter.databinding.FragmentSideMenuBinding
 import com.anou.trowitter.navigation.MainRouter
 import com.anou.trowitter.ui.MainActivity
 import com.anou.trowitter.utils.Constants
+import kotlinx.android.synthetic.main.fragment_side_menu.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,12 +30,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SideMenuFragment : BaseFragment() {
     val mainViewModel by viewModel<MainViewModel>()
     val mainRouter: MainRouter by inject()
+    val applicationController: ApplicationController by inject()
 
     lateinit var binding: FragmentSideMenuBinding
     lateinit var adapter: SideMenuAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         // Bind views
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_side_menu, container, false)
@@ -50,7 +55,12 @@ class SideMenuFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        applicationController.currentUser.let { user ->
+            if (!user.email.isNullOrBlank()) {
+                usernamTextView.text = getString(R.string.profile_username, user.username, user.firstname, user.lastname)
+                emailTextView.text = user.email
+            }
+        }
         mainViewModel.getModules().observe(this, Observer { usecases ->
             usecases?.let {
 
@@ -73,7 +83,7 @@ class SideMenuFragment : BaseFragment() {
                     ShowLoading -> {
 //                        showTransparentProgressDialog()
                     }
-                     HideLoading -> {
+                    HideLoading -> {
 //                        dismissProgressDialog()
                     }
                 }

@@ -42,12 +42,14 @@
                     android:id="@+id/imageView"/>
 
             <TextView
+                    android:id="@+id/usernamTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/size_small"
                     android:paddingStart="@dimen/size_medium"
                     android:paddingEnd="@dimen/size_medium"
                     android:text="@string/setting_label"
+                    android:textStyle="bold"
                     android:textColor="@color/browser_actions_text_color"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
@@ -60,9 +62,10 @@
                     android:paddingBottom="@dimen/size_medium"
                     android:textColor="@color/browser_actions_text_color"
                     android:text="@string/button_logout_label"
-                    android:id="@+id/textView"/>
+                    android:id="@+id/emailTextView"/>
 
-            <View android:layout_width="match_parent" android:layout_height="1dp"
+            <View android:layout_width="match_parent"
+                  android:layout_height="1dp"
                   android:background="@color/browser_actions_divider_color"/>
 
         </LinearLayout>

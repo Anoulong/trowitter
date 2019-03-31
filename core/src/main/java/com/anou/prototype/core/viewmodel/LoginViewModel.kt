@@ -48,6 +48,7 @@ class LoginViewModel constructor(
                     }
                     ResourceStatus.SUCCESS -> {
                         result.value?.let { data ->
+                            applicationController.currentUser = data
                             loginUseCaseLiveData.value = LoginUseCase.navigateToMainScreen(data)
                         }
                         loginUseCaseLiveData.value = LoginUseCase.HideLoading
