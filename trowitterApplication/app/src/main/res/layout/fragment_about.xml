@@ -1,68 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize">
 
-    <data>
-
-        <variable
-                name="about"
-                type="com.anou.prototype.core.db.about.AboutEntity" />
-
-        <!--<import type="com.quickseries.core.common.utils.DateTimeUtils" />-->
-    </data>
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+                android:id="@+id/fragmentAboutImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <ImageView
-                    android:id="@+id/item_promo_card_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintDimensionRatio="H,2:1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcNetwork="@{about.image}"
-                    tools:background="@color/browser_actions_bg_grey" />
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/mvvm"/>
 
 
-            <TextView
-                    android:id="@+id/item_promo_card_duration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:padding="@dimen/size_small"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_image"
-                    tools:text="duration duration duration  " />
+        <TextView
+                android:id="@+id/fragmentAboutSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/size_small"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentAboutImage"
+                tools:text="fragmentAboutSubtitle"/>
 
 
-            <TextView
-                    android:id="@+id/textViewTitleAbout"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/size_small"
-                    android:text="{viewModel.getPromo().title}"
-                    app:layout_constraintTop_toBottomOf="@+id/item_promo_card_duration"
-                    tools:text="title title title title title title title title" />
+        <TextView
+                android:id="@+id/fragmentAboutTitle"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_small"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentAboutSubtitle"
+                tools:text="fragmentAboutTitle"/>
 
-            <TextView
-                    android:id="@+id/item_promo_card_organization"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:padding="@dimen/size_small"
-                    android:text="{viewModel.getPromo().organization}"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewTitleAbout"
-                    tools:text="organization organization" />
+        <TextView
+                android:id="@+id/fragmentAboutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="@dimen/size_small"
+                app:layout_constraintTop_toBottomOf="@+id/fragmentAboutTitle"
+                tools:text="fragmentAboutDescription"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</layout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

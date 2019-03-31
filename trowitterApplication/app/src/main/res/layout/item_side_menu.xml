@@ -9,37 +9,36 @@
                 type="com.anou.prototype.core.db.module.ModuleEntity"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:id="@+id/itemDrawerModuleLayout"
             android:layout_width="match_parent"
             android:background="@drawable/selector_default_item"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_height="@dimen/side_menu_height">
-
-        <ImageView
-                android:id="@+id/itemDrawerModuleImage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/itemDrawerModuleTitle"
-                android:duplicateParentState="true"
-                android:gravity="center_vertical|start"
-                android:src="@android:drawable/ic_dialog_email"
-                android:tint="@android:color/darker_gray"/>
 
         <TextView
                 android:id="@+id/itemDrawerModuleTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/itemDrawerModuleImage"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_weight=".9"
+                android:gravity="center|start"
+                android:textSize="@dimen/font_large"
                 android:duplicateParentState="true"
-                android:gravity="center_vertical|end"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="@dimen/size_medium"
                 tools:text="@string/app_name"
                 android:text="@{module.title}"
                 android:layout_marginEnd="8dp"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+                android:id="@+id/itemDrawerModuleImage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:duplicateParentState="true"
+                android:layout_gravity="end|center"
+                android:src="@drawable/ic_navigate_next"
+                android:tint="@android:color/darker_gray"/>
+    </LinearLayout>
 </layout>

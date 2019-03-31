@@ -8,14 +8,14 @@ import androidx.room.Query
 
 @Dao
 abstract class AboutDao {
-    @Query("SELECT * FROM About WHERE id LIKE :id")
-    abstract fun getAbout(id: String): AboutEntity
+    @Query("SELECT * FROM About")
+    abstract fun getAbout(): AboutEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(about: AboutEntity)
 
-    @Query("DELETE FROM About WHERE id LIKE :id")
-    abstract fun deleteByModuleEid(id: String): Int
+    @Query("DELETE FROM About")
+    abstract fun deleteByModuleEid(): Int
 
 
 }

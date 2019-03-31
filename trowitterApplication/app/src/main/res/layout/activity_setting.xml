@@ -38,6 +38,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_logout_label"
+                    android:textColor="@color/white"
+                    android:background="@color/colorPrimaryDark"
                     android:layout_gravity="center"
                     android:gravity="center"/>
 

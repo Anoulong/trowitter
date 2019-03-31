@@ -28,19 +28,20 @@ class AboutRepository(
         private val TAG = AboutRepository::class.java.simpleName
     }
 
-    fun getAbout(moduleEid: String) = object : RemoteDataFirstStrategy<AboutEntity>() {
-        override fun isRemoteAvailable(): Boolean = networkService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+    fun getAbout() = object : RemoteDataFirstStrategy<AboutEntity>() {
+//        override fun isRemoteAvailable(): Boolean = networkService.getConnectionType() != NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET
+        override fun isRemoteAvailable() = true
 
         override suspend fun fetchData(): Deferred<AboutEntity> = apiService.fetchAbout()
 
-        override suspend fun readData(): Deferred<AboutEntity> = CompletableDeferred(applicationDatabase.aboutDao().getAbout(moduleEid))
+        override suspend fun readData(): Deferred<AboutEntity> = CompletableDeferred(applicationDatabase.aboutDao().getAbout())
 
         override suspend fun writeData(data: AboutEntity) {
             applicationDatabase.aboutDao().insert(data)
         }
     }.asLiveData()
 
-    fun deleteByModuleEid(moduleEid: String) {
-        applicationDatabase.aboutDao().deleteByModuleEid(moduleEid)
+    fun deleteByModuleEid() {
+        applicationDatabase.aboutDao().deleteByModuleEid()
     }
 }
