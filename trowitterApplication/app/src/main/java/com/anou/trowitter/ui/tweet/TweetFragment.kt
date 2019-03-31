@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -63,13 +64,30 @@ class TweetFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.fragmentTweetList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy < 0) {
+                    // Scroll down
+                    if (binding.newTweetFab.isShown()) {
+                        binding.newTweetFab.hide();
+                    }
+                } else if (dy > 0) {
+                    // Scroll Down
+                    if (!binding.newTweetFab.isShown()) {
+                        binding.newTweetFab.show();
+                    }
+                }
+            }
+        })
 
         tweetViewModel.getTweets().observe(this, Observer { usecases ->
             usecases?.let {
 
                 when (usecases) {
                     is TweetUseCase.SetData -> {
-                        if(!usecases.tweets.isNullOrEmpty()) {
+                        if (!usecases.tweets.isNullOrEmpty()) {
                             adapter.setData(usecases.tweets)
                             binding.fragmentTweetList.smoothScrollToPosition(adapter.itemCount - 1)
                         }
