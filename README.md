@@ -6,11 +6,19 @@ Prototype Android Project
 
 ### Projects
 
+This project represent MVVM architecture with a high awareness of separation of concern, especially between UI component (Activity/Fragment) and ViewModel by using Sealed Class in Kotlin.
+The intention for this demo project is to capture the logic in the Repository for networking and local storage with different strategies. 
+These strategies are simple class that use coroutine to perform remote data fetching and local saving into local database. 
+Repositories will executed the data gathering tasks  and return different wrapped result to the viewmodel. 
+The Viewmodel will take care of the business logic and invoke a proper use cases. Those use cases will be represented as a Sealed Class. 
+Those use cases (Sealed Class) will allow the UI to implement action or state that is required to interact with users.
+
+
 ### Architecture Components : MVVM
 
-* **[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)** - Android architecture components are a collection of libraries that help you design robust, testable, and maintainable apps. Start with classes for managing your UI component lifecycle and handling data persistence..
+* **[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)** - 
 
-### Other Sources
+### Sources
 
 - [Kotlin](https://developer.android.com/kotlin/)
 - [Room](https://developer.android.com/topic/libraries/architecture/room)
@@ -18,6 +26,9 @@ Prototype Android Project
 - [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/)
+- [Coroutine](https://youtu.be/EOjq4OIWKqM?t=1302)
+- [Sealed Class](https://thoughtbot.com/blog/finite-state-machines-android-kotlin-good-times)
+
 
 License
 -------
