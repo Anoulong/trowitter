@@ -14,9 +14,12 @@ The Viewmodel will take care of the business logic and invoke a proper use cases
 Those use cases (Sealed Class) will allow the UI to implement action or state that is required to interact with users.
 
 
+#### Credentials 
+batman@yopmail.com/trov
+
 ### Architecture Components : MVVM
 
-* **[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)** - 
+* **[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/)** 
 
 ### Sources
 
